@@ -1,0 +1,189 @@
+import Header from '@/components/layout/Header';
+import Footer from '@/components/layout/Footer';
+import FloatingWhatsApp from '@/components/layout/FloatingWhatsApp';
+import PageHero from '@/components/shared/PageHero';
+import ContactFormSection from '@/components/home/ContactFormSection';
+import { motion } from 'framer-motion';
+import { Phone, Mail, MapPin, Clock, MessageCircle } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { useToast } from '@/hooks/use-toast';
+import { useState } from 'react';
+
+const contactInfo = [
+  {
+    icon: Phone,
+    title: 'Phone',
+    value: '+91 9121080131',
+    link: 'tel:+919121080131',
+  },
+  {
+    icon: Mail,
+    title: 'Email',
+    value: 'hello@outrightsluringinvite.com',
+    link: 'mailto:hello@outrightsluringinvite.com',
+  },
+  {
+    icon: MapPin,
+    title: 'Location',
+    value: 'Hyderabad, Telangana, India',
+    link: null,
+  },
+  {
+    icon: Clock,
+    title: 'Working Hours',
+    value: 'Mon - Sat: 10AM - 7PM',
+    link: null,
+  },
+];
+
+export default function Contact() {
+  const { toast } = useToast();
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    subject: '',
+    message: '',
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    toast({ title: 'Message Sent!', description: 'We will get back to you within 24 hours.' });
+    setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+  };
+
+  const handleWhatsApp = () => {
+    const message = `Hi! I'm ${formData.name || 'interested'}.\nSubject: ${formData.subject || 'General Enquiry'}\nMessage: ${formData.message || 'I would like to enquire about your services.'}`;
+    window.open(`https://wa.me/919121080131?text=${encodeURIComponent(message)}`, '_blank');
+  };
+
+  return (
+    <div className="min-h-screen bg-background">
+      <Header />
+      <main>
+        <PageHero 
+          title="Contact Us" 
+          subtitle="Get in touch for enquiries, collaborations, or questions"
+          backgroundImage="https://images.unsplash.com/photo-1520854221256-17451cc331bf?w=1920&q=80"
+        />
+
+        <section className="section-padding">
+          <div className="container-custom px-4">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
+              {/* Contact Info Cards */}
+              <motion.div 
+                initial={{ opacity: 0, x: -30 }} 
+                animate={{ opacity: 1, x: 0 }} 
+                className="space-y-4"
+              >
+                <h2 className="font-heading text-2xl md:text-3xl text-foreground mb-6">Get in Touch</h2>
+                
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {contactInfo.map((info, index) => {
+                    const IconComponent = info.icon;
+                    const content = (
+                      <div className="flex items-start gap-4 p-4 md:p-5 bg-card border border-border rounded-xl hover:border-primary transition-colors h-full">
+                        <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                          <IconComponent className="w-5 h-5 md:w-6 md:h-6 text-primary" />
+                        </div>
+                        <div>
+                          <h3 className="font-semibold text-sm md:text-base mb-1">{info.title}</h3>
+                          <p className="text-muted-foreground text-sm">{info.value}</p>
+                        </div>
+                      </div>
+                    );
+                    
+                    return (
+                      <motion.div
+                        key={info.title}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: index * 0.1 }}
+                      >
+                        {info.link ? (
+                          <a href={info.link} className="block h-full">
+                            {content}
+                          </a>
+                        ) : (
+                          content
+                        )}
+                      </motion.div>
+                    );
+                  })}
+                </div>
+
+                {/* WhatsApp CTA */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 }}
+                  className="mt-6"
+                >
+                  <button
+                    onClick={handleWhatsApp}
+                    className="w-full flex items-center justify-center gap-3 p-4 md:p-5 bg-[#25D366] hover:bg-[#22c55e] text-white rounded-xl transition-colors"
+                  >
+                    <MessageCircle className="w-5 h-5 md:w-6 md:h-6" />
+                    <span className="font-semibold text-base md:text-lg">Chat on WhatsApp</span>
+                  </button>
+                </motion.div>
+              </motion.div>
+              
+              {/* Contact Form */}
+              <motion.form 
+                initial={{ opacity: 0, x: 30 }} 
+                animate={{ opacity: 1, x: 0 }} 
+                onSubmit={handleSubmit} 
+                className="bg-card border border-border rounded-2xl p-6 md:p-8 space-y-4"
+              >
+                <h2 className="font-heading text-2xl md:text-3xl text-foreground mb-4">Send a Message</h2>
+                
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <Input 
+                    placeholder="Your Name" 
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    required 
+                  />
+                  <Input 
+                    type="email" 
+                    placeholder="Your Email" 
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    required 
+                  />
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <Input 
+                    placeholder="Phone Number" 
+                    value={formData.phone}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  />
+                  <Input 
+                    placeholder="Subject" 
+                    value={formData.subject}
+                    onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                  />
+                </div>
+                <Textarea 
+                  placeholder="Your Message" 
+                  className="min-h-[120px] md:min-h-[150px]" 
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  required 
+                />
+                <Button type="submit" variant="cta" size="lg" className="w-full">
+                  Send Message
+                </Button>
+              </motion.form>
+            </div>
+          </div>
+        </section>
+      </main>
+      <Footer />
+      <FloatingWhatsApp />
+    </div>
+  );
+}
