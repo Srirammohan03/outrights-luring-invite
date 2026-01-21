@@ -1,25 +1,16 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
-import {
-  Flame,
-  ArrowRight,
-  ChevronLeft,
-  ChevronRight,
-  Play,
-  X,
-} from "lucide-react";
+import { Flame, ArrowRight, ChevronLeft, ChevronRight, Play, X } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
 import type { EmblaOptionsType } from "embla-carousel";
 
 import { getTrendingVideosWithProducts } from "@/data/products";
 import { Button } from "@/components/ui/button";
 import { AuroraBackground } from "@/components/ui/aurora-background";
+import VideoPreview, { VideoPlatform } from "@/components/shared/VideoPreview";
 
-type Platform = "local" | "youtube" | "instagram" | "pinterest";
 type TrendingItem = ReturnType<typeof getTrendingVideosWithProducts>[number];
-
-/** -------- helpers -------- */
 
 function useMediaQuery(query: string) {
   const [matches, setMatches] = useState(false);
@@ -43,194 +34,18 @@ function useMediaQuery(query: string) {
   return matches;
 }
 
-function isLocalVideoUrl(url: string): boolean {
-  const lower = url.toLowerCase().split("?")[0].split("#")[0];
-  return (
-    lower.endsWith(".mp4") ||
-    lower.endsWith(".webm") ||
-    lower.endsWith(".ogg") ||
-    lower.startsWith("/videos/") ||
-    lower.startsWith("videos/")
-  );
-}
-
-function inferPlatform(url: string, declared?: Platform): Platform {
-  if (isLocalVideoUrl(url)) return "local";
-
-  try {
-    const u = new URL(url, window.location.origin);
-    const host = u.hostname.toLowerCase();
-
-    if (host.includes("youtube.com") || host.includes("youtu.be"))
-      return "youtube";
-    if (host.includes("instagram.com")) return "instagram";
-    if (host.includes("pinterest.") || host.includes("pin.it"))
-      return "pinterest";
-  } catch {
-    // ignore
-  }
-
-  return declared ?? "local";
-}
-
-function getYouTubeId(url: string): string | null {
-  try {
-    const u = new URL(url, window.location.origin);
-
-    if (u.hostname.includes("youtu.be")) {
-      const id = u.pathname.split("/").filter(Boolean)[0];
-      return id || null;
-    }
-
-    const v = u.searchParams.get("v");
-    if (v) return v;
-
-    const parts = u.pathname.split("/").filter(Boolean);
-
-    const shortsIndex = parts.indexOf("shorts");
-    if (shortsIndex >= 0 && parts[shortsIndex + 1])
-      return parts[shortsIndex + 1];
-
-    const embedIndex = parts.indexOf("embed");
-    if (embedIndex >= 0 && parts[embedIndex + 1]) return parts[embedIndex + 1];
-
-    return null;
-  } catch {
-    return null;
-  }
-}
-
-function getPinterestEmbedUrl(url: string): string | null {
-  try {
-    const u = new URL(url, window.location.origin);
-    const parts = u.pathname.split("/").filter(Boolean);
-
-    const pinIndex = parts.indexOf("pin");
-    const id = pinIndex >= 0 ? parts[pinIndex + 1] : null;
-    if (!id) return null;
-
-    return `https://assets.pinterest.com/ext/embed.html?id=${id}`;
-  } catch {
-    return null;
-  }
-}
-
-function getEmbedSrc(platform: Platform, url: string): string | null {
-  if (platform === "youtube") {
-    const id = getYouTubeId(url);
-    if (!id) return null;
-    return `https://www.youtube.com/embed/${id}?rel=0&modestbranding=1&playsinline=1&autoplay=1`;
-  }
-
-  if (platform === "pinterest") return getPinterestEmbedUrl(url);
-
-  return null;
-}
-
-function normalizeInstagramUrl(url: string) {
-  try {
-    const u = new URL(url, window.location.origin);
-    u.protocol = "https:";
-    if (!u.pathname.endsWith("/")) u.pathname += "/";
-    u.search = "";
-    u.hash = "";
-    return u.toString();
-  } catch {
-    return url;
-  }
-}
-
-function useInstagramEmbed(url: string | null) {
-  const [ready, setReady] = useState(false);
-
-  useEffect(() => {
-    if (!url) return;
-
-    const w = window as any;
-
-    const process = () => {
-      try {
-        w.instgrm?.Embeds?.process?.();
-        setReady(true);
-      } catch {
-        setReady(false);
-      }
-    };
-
-    if (w.instgrm?.Embeds?.process) {
-      process();
-      return;
-    }
-
-    const existing = document.querySelector(
-      'script[data-instgrm-embed="true"]'
-    ) as HTMLScriptElement | null;
-    if (existing) {
-      existing.addEventListener("load", process, { once: true });
-      return;
-    }
-
-    const script = document.createElement("script");
-    script.async = true;
-    script.defer = true;
-    script.src = "https://www.instagram.com/embed.js";
-    script.setAttribute("data-instgrm-embed", "true");
-    script.onload = process;
-    document.body.appendChild(script);
-
-    return () => {
-      script.onload = null;
-    };
-  }, [url]);
-
-  useEffect(() => {
-    if (!url) return;
-    const w = window as any;
-    const t = setTimeout(() => {
-      try {
-        w.instgrm?.Embeds?.process?.();
-        setReady(true);
-      } catch {
-        setReady(false);
-      }
-    }, 220);
-    return () => clearTimeout(t);
-  }, [url]);
-
-  return ready;
-}
-
-function getBestThumbnail(
-  item: TrendingItem,
-  platform: Platform
-): string | null {
-  if (item.thumbnail) return item.thumbnail;
-
-  if (platform === "youtube") {
-    const id = getYouTubeId(item.url);
-    if (!id) return null;
-    return `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
-  }
-
-  return null;
-}
-
-/** -------- component -------- */
-
 export default function TrendingVideo() {
   const items = useMemo(() => getTrendingVideosWithProducts(), []);
   const [selected, setSelected] = useState<TrendingItem | null>(null);
 
   const isDesktop = useMediaQuery("(min-width: 768px)");
 
-  // ✅ Correct TS type import: EmblaOptionsType comes from "embla-carousel"
   const emblaOptions = useMemo<EmblaOptionsType>(
     () => ({
       loop: true,
       align: isDesktop ? "start" : "center",
       slidesToScroll: 1,
       dragFree: false,
-      // ✅ valid: 'trimSnaps' | 'keepSnaps' | false
       containScroll: false,
     }),
     [isDesktop]
@@ -261,17 +76,11 @@ export default function TrendingVideo() {
         `Please share more details.`
     );
 
-    window.open(
-      `https://api.whatsapp.com/send?phone=919121080131&text=${message}`,
-      "_blank"
-    );
+    window.open(`https://api.whatsapp.com/send?phone=919121080131&text=${message}`, "_blank");
   };
 
   return (
-    <AuroraBackground
-      className="h-auto min-h-0 w-full items-stretch justify-start py-0"
-      showRadialGradient
-    >
+    <AuroraBackground className="h-auto min-h-0 w-full items-stretch justify-start py-0" showRadialGradient>
       <section className="section-padding w-full relative z-10">
         <div className="container-custom">
           {/* Header */}
@@ -285,9 +94,7 @@ export default function TrendingVideo() {
             <div className="flex flex-col items-center text-center">
               <div className="flex items-center gap-2 text-primary mb-2">
                 <Flame className="w-5 h-5" />
-                <span className="text-sm font-semibold uppercase tracking-wider">
-                  Trending Now
-                </span>
+                <span className="text-sm font-semibold uppercase tracking-wider">Trending Now</span>
               </div>
               <h2 className="font-heading text-3xl md:text-4xl text-foreground font-bold">
                 Trending Videos
@@ -345,11 +152,7 @@ export default function TrendingVideo() {
             <div ref={emblaRef} className="overflow-hidden w-full">
               <div className="flex gap-4 px-4 md:px-0 items-stretch">
                 {items.map((item, index) => {
-                  const resolvedPlatform = inferPlatform(
-                    item.url,
-                    item.platform as Platform
-                  );
-                  const thumb = getBestThumbnail(item, resolvedPlatform);
+                  const resolvedPlatform = (item.platform as VideoPlatform) || "local";
 
                   return (
                     <motion.div
@@ -367,38 +170,22 @@ export default function TrendingVideo() {
                       "
                     >
                       <div className="w-full h-full rounded-2xl border border-border bg-background shadow-sm overflow-hidden flex flex-col">
-                        <div className="relative aspect-[9/16] bg-muted">
-                          {thumb ? (
-                            <img
-                              src={thumb}
-                              alt={item.product.title}
-                              className="w-full h-full object-cover"
-                              draggable={false}
-                              loading="lazy"
+                        <div className="relative aspect-[9/16] bg-muted overflow-hidden">
+                          {/* ✅ Auto preview from platform */}
+                          <div className="absolute inset-0 pointer-events-none">
+                            <VideoPreview
+                              url={item.url}
+                              platform={resolvedPlatform}
+                              thumbnail={item.thumbnail}
+                              title={item.product.title}
+                              mode="card"
+                              interactive={false}
+                              className="w-full h-full"
+                              mediaClassName="w-full h-full object-cover"
                             />
-                          ) : resolvedPlatform === "local" ? (
-                            <video
-                              src={item.url}
-                              className="w-full h-full object-cover"
-                              muted
-                              playsInline
-                              loop
-                              preload="metadata"
-                            />
-                          ) : (
-                            <div className="w-full h-full bg-gradient-to-br from-muted to-secondary flex items-center justify-center">
-                              <div className="text-center px-5">
-                                <div className="text-[11px] font-semibold text-muted-foreground mb-2">
-                                  {resolvedPlatform.toUpperCase()}
-                                </div>
-                                <div className="text-sm text-foreground/80">
-                                  Tap to preview
-                                </div>
-                              </div>
-                            </div>
-                          )}
+                          </div>
 
-                          <div className="absolute top-3 right-3 flex gap-2">
+                          <div className="absolute top-3 right-3 flex gap-2 z-10">
                             {item.product.bestSeller && (
                               <span className="bg-primary text-primary-foreground text-[11px] font-semibold px-2.5 py-1 rounded-full">
                                 Best Seller
@@ -414,7 +201,7 @@ export default function TrendingVideo() {
                           <button
                             type="button"
                             onClick={() => setSelected(item)}
-                            className="absolute inset-0 flex items-center justify-center"
+                            className="absolute inset-0 flex items-center justify-center z-10"
                             aria-label="Play video"
                           >
                             <span className="w-14 h-14 rounded-full bg-background/85 border border-border flex items-center justify-center shadow-sm hover:scale-105 transition-transform">
@@ -426,10 +213,7 @@ export default function TrendingVideo() {
                         <div className="p-4 flex-1 flex flex-col">
                           <div className="flex flex-wrap gap-2 mb-2">
                             {item.product.tags.slice(0, 2).map((tag) => (
-                              <span
-                                key={tag}
-                                className="text-xs text-muted-foreground bg-muted px-2 py-1 rounded-md"
-                              >
+                              <span key={tag} className="text-xs text-muted-foreground bg-muted px-2 py-1 rounded-md">
                                 {tag}
                               </span>
                             ))}
@@ -440,15 +224,8 @@ export default function TrendingVideo() {
                           </h3>
 
                           <div className="mt-4 flex gap-2">
-                            <Button
-                              asChild
-                              variant="hero"
-                              size="default"
-                              className="w-full flex-1"
-                            >
-                              <Link to={`/product/${item.product.slug}`}>
-                                View
-                              </Link>
+                            <Button asChild variant="hero" size="default" className="w-full flex-1">
+                              <Link to={`/product/${item.product.slug}`}>View</Link>
                             </Button>
 
                             <Button
@@ -456,9 +233,7 @@ export default function TrendingVideo() {
                               variant="whatsapp"
                               size="default"
                               className="flex-1"
-                              onClick={() =>
-                                handleWhatsAppEnquiry(item.product)
-                              }
+                              onClick={() => handleWhatsAppEnquiry(item.product)}
                             >
                               WhatsApp
                             </Button>
@@ -497,23 +272,6 @@ function TrendingModal({
   onClose: () => void;
   onWhatsApp: (p: TrendingItem["product"]) => void;
 }) {
-  const resolvedPlatform = inferPlatform(
-    selected.url,
-    selected.platform as Platform
-  );
-  const normalizedInstaUrl =
-    resolvedPlatform === "instagram"
-      ? normalizeInstagramUrl(selected.url)
-      : selected.url;
-
-  const embedSrc =
-    resolvedPlatform === "local"
-      ? null
-      : getEmbedSrc(resolvedPlatform, normalizedInstaUrl);
-  const instaReady = useInstagramEmbed(
-    resolvedPlatform === "instagram" ? normalizedInstaUrl : null
-  );
-
   return (
     <motion.div
       className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4"
@@ -523,11 +281,7 @@ function TrendingModal({
       role="dialog"
       aria-modal="true"
     >
-      <div
-        className="absolute inset-0 bg-foreground/70 backdrop-blur-sm"
-        onClick={onClose}
-        aria-hidden="true"
-      />
+      <div className="absolute inset-0 bg-foreground/70 backdrop-blur-sm" onClick={onClose} aria-hidden="true" />
 
       <motion.div
         className="
@@ -551,6 +305,7 @@ function TrendingModal({
             <p className="text-sm text-muted-foreground">Preview</p>
             <p className="font-semibold truncate">{selected.product.title}</p>
           </div>
+
           <button
             type="button"
             onClick={onClose}
@@ -562,53 +317,16 @@ function TrendingModal({
         </div>
 
         <div className="flex-1 min-h-0 bg-black">
-          {resolvedPlatform === "local" ? (
-            <video
-              src={selected.url}
-              className="w-full h-full object-contain"
-              controls
-              playsInline
-            />
-          ) : resolvedPlatform === "instagram" ? (
-            <div className="w-full h-full bg-white overflow-auto">
-              <div className="p-2">
-                <blockquote
-                  className="instagram-media"
-                  data-instgrm-permalink={normalizedInstaUrl}
-                  data-instgrm-version="14"
-                  style={{ margin: 0, width: "100%" }}
-                />
-                {!instaReady && (
-                  <div className="text-center text-sm text-muted-foreground py-4">
-                    Loading Instagram preview...
-                  </div>
-                )}
-              </div>
-            </div>
-          ) : embedSrc ? (
-            <iframe
-              src={embedSrc}
-              className="w-full h-full"
-              allow="clipboard-write; encrypted-media; picture-in-picture; web-share"
-              allowFullScreen
-              loading="lazy"
-              title="Video Preview"
-            />
-          ) : (
-            <div className="w-full h-full flex items-center justify-center text-white p-6 text-center">
-              <div>
-                <p className="mb-3">Embed not available for this link.</p>
-                <a
-                  href={selected.url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="underline"
-                >
-                  Open video
-                </a>
-              </div>
-            </div>
-          )}
+          <VideoPreview
+            url={selected.url}
+            platform={selected.platform as VideoPlatform}
+            thumbnail={selected.thumbnail}
+            title={selected.product.title}
+            mode="modal"
+            interactive={true}
+            className="w-full h-full"
+            mediaClassName="w-full h-full"
+          />
         </div>
 
         <div className="relative z-10 shrink-0 px-4 py-3 border-t border-border bg-background">
@@ -617,24 +335,14 @@ function TrendingModal({
               <Link to={`/product/${selected.product.slug}`}>View</Link>
             </Button>
 
-            <Button
-              type="button"
-              variant="whatsapp"
-              className="flex-1"
-              onClick={() => onWhatsApp(selected.product)}
-            >
+            <Button type="button" variant="whatsapp" className="flex-1" onClick={() => onWhatsApp(selected.product)}>
               WhatsApp
             </Button>
           </div>
 
           <div className="mt-2 text-[11px] text-muted-foreground">
             If preview doesn’t load, open:
-            <a
-              href={selected.url}
-              target="_blank"
-              rel="noreferrer"
-              className="underline ml-1"
-            >
+            <a href={selected.url} target="_blank" rel="noreferrer" className="underline ml-1">
               Link
             </a>
           </div>

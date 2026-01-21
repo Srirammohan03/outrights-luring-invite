@@ -195,7 +195,7 @@ export default function Collections() {
           </div>
 
           {/* Products grid */}
-          <div>
+          {/* <div>
             <h2 className="font-heading text-2xl md:text-3xl text-foreground mb-6">
               All Templates ({filteredProducts.length})
             </h2>
@@ -245,10 +245,10 @@ export default function Collections() {
                 </motion.div>
               ))}
             </div>
-          </div>
+          </div> */}
         </div>
 
-        <ContactFormSection variant="full" />
+        {/* <ContactFormSection variant="full" /> */}
       </main>
       <Footer />
       <FloatingWhatsApp />

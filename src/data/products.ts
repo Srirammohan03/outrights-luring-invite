@@ -267,7 +267,7 @@ export const products: Product[] = [
     // ✅ VIDEO SUPPORT (this enables play button in Best Sellers)
     video: {
       platform: "local", // local | youtube | instagram | pinterest
-      url: "/videos/1.mp4",
+      url: "https://youtube.com/shorts/nXvMTCadXEc?si=cU_o-wRQqLNB2OUg",
       // thumbnail: "/videos/royal-3d-palace-poster.jpg" // optional
     },
   },
@@ -294,6 +294,11 @@ export const products: Product[] = [
     whatIncluded: ['45-60 second video', 'Minimal animation style', 'Typography focus', 'Background music', '1 revision round'],
     revisionPolicy: '1 revision round included. Additional revisions at ₹500 each.',
     deliverables: ['MP4 video (1080p)', 'WhatsApp optimized version'],
+     video: {
+      platform: "youtube", // local | youtube | instagram | pinterest
+      url: "https://youtube.com/shorts/nXvMTCadXEc?si=cU_o-wRQqLNB2OUg",
+      // thumbnail: "/videos/royal-3d-palace-poster.jpg" // optional
+    },
   },
   {
     id: 'prod-3',
@@ -445,6 +450,11 @@ export const products: Product[] = [
     revisionPolicy: '1 revision included.',
     deliverables: ['PDF', 'WhatsApp image'],
     subOccasion: ['1st-birthday', 'kids-birthday'],
+     video: {
+      platform: "youtube", // local | youtube | instagram | pinterest
+      url: "https://youtube.com/shorts/nXvMTCadXEc?si=cU_o-wRQqLNB2OUg",
+      // thumbnail: "/videos/royal-3d-palace-poster.jpg" // optional
+    },
   },
   // Anniversary
   {
@@ -786,8 +796,8 @@ export const trendingVideos: TrendingVideoItem[] = [
   {
     id: 'tv-1',
     productSlug: 'royal-3d-palace-invitation',
-    platform: 'instagram',
-    url: 'https://www.instagram.com/reel/DS7YuTojLv0/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==',
+    platform: 'youtube',
+    url: 'https://youtube.com/shorts/nXvMTCadXEc?si=cU_o-wRQqLNB2OUg',
     // thumbnail optional
   },
   // Example YouTube (replace with yours)
@@ -795,7 +805,7 @@ export const trendingVideos: TrendingVideoItem[] = [
     id: 'tv-2',
     productSlug: 'love-story-timeline',
     platform: 'youtube',
-    url: '/videos/1.mp4',
+    url: 'https://youtube.com/shorts/nXvMTCadXEc?si=cU_o-wRQqLNB2OUg',
   },
   // Example Local MP4 (put file in /public/videos/)
   {
