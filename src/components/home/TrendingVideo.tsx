@@ -292,7 +292,7 @@ function TrendingModal({
           overflow-hidden border border-border shadow-xl
           flex flex-col
         "
-        style={{ maxHeight: "calc(100vh - 16px)" }}
+        style={{ height: "80vh" }}
         initial={{ y: 16, scale: 0.99, opacity: 0 }}
         animate={{ y: 0, scale: 1, opacity: 1 }}
         exit={{ y: 16, scale: 0.99, opacity: 0 }}

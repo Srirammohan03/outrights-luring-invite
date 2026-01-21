@@ -221,7 +221,7 @@ export default function ProductDetail() {
                 overflow-hidden border border-border shadow-xl
                 flex flex-col
               "
-              style={{ maxHeight: "calc(100vh - 16px)" }}
+              style={{ height: "90vh" }}
               initial={{ y: 16, scale: 0.99, opacity: 0 }}
               animate={{ y: 0, scale: 1, opacity: 1 }}
               exit={{ y: 16, scale: 0.99, opacity: 0 }}
@@ -244,17 +244,19 @@ export default function ProductDetail() {
                 </button>
               </div>
 
-              <div className="flex-1 min-h-0 bg-black">
-                <VideoPreview
-                  url={product.video!.url}
-                  platform={product.video!.platform as VideoPlatform}
-                  thumbnail={product.video!.thumbnail}
-                  title={product.title}
-                  mode="modal"
-                  interactive={true}
-                  className="w-full h-full"
-                  mediaClassName="w-full h-full"
-                />
+              <div className="flex-1  bg-black items-center justify-center">
+                <div className="w-full h-full aspect-video">
+                  <VideoPreview
+                    url={product.video!.url}
+                    platform={product.video!.platform as VideoPlatform}
+                    thumbnail={product.video!.thumbnail}
+                    title={product.title}
+                    mode="modal"
+                    interactive={true}
+                    className="w-full h-full"
+                    mediaClassName="w-full h-full"
+                  />
+                </div>
               </div>
             </motion.div>
           </motion.div>

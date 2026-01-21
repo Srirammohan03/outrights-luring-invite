@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-import { Phone, Mail, MapPin, Instagram, Facebook, Youtube } from 'lucide-react';
+import { Phone, Mail, MapPin, Instagram, Facebook, Youtube, Linkedin } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { collections } from '@/data/products';
 
@@ -54,29 +55,36 @@ export default function Footer() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
             {/* Brand */}
             <div>
-              <Link to="/" className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-primary-glow flex items-center justify-center">
-                  <span className="text-primary-foreground font-heading text-xl">O</span>
-                </div>
-                <div>
-                  <h1 className="font-heading text-xl leading-tight">
-                    Outright's Luring
-                  </h1>
-                  <p className="text-xs text-muted-foreground -mt-1">Invite</p>
-                </div>
+              <Link to="/" className="relative h-20 flex items-center">
+                <motion.img
+                  layoutId="site-logo"
+                  src="/whitelogo.png"
+                  alt="Logo"
+                  className="h-24 w-auto object-contain"
+                  transition={{ duration: 0.8, ease: "easeInOut" }}
+                />
               </Link>
               <p className="text-muted-foreground text-sm mb-6">
                 Where dreams meet innovation, and every occasion becomes a cherished memory.
               </p>
-              <div className="flex gap-4">
-                <a href="#" className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center hover:bg-primary/40 transition-colors">
-                  <Instagram className="w-5 h-5" />
+              <div className="flex">
+                <a href="#" className="w-10 h-10 rounded-full  flex items-center justify-center hover:bg-primary/40 transition-colors">
+                  <Instagram className="w-7 h-7" />
                 </a>
-                <a href="#" className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center hover:bg-primary/40 transition-colors">
-                  <Facebook className="w-5 h-5" />
+                <a href="#" className="w-10 h-10 rounded-full  flex items-center justify-center hover:bg-primary/40 transition-colors">
+                  <Facebook className="w-7 h-7" />
                 </a>
-                <a href="#" className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center hover:bg-primary/40 transition-colors">
-                  <Youtube className="w-5 h-5" />
+                <a href="#" className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-primary/40 transition-colors">
+                  <Youtube className="w-7 h-7" />
+                </a>
+                <a href="#" className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-primary/40 transition-colors" aria-label="Pinterest">
+                  {/* Pinterest SVG icon */}
+                  <svg className="w-7 h-7" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 0C5.373 0 0 5.373 0 12c0 4.991 3.657 9.128 8.438 10.093-.117-.858-.223-2.178.047-3.115.244-.832 1.573-5.308 1.573-5.308s-.4-.8-.4-1.984c0-1.859 1.078-3.247 2.419-3.247 1.142 0 1.694.858 1.694 1.887 0 1.15-.732 2.868-1.109 4.463-.316 1.338.671 2.428 1.99 2.428 2.389 0 4.021-3.066 4.021-6.697 0-2.77-1.87-4.844-5.273-4.844-3.84 0-6.24 2.872-6.24 6.08 0 1.12.331 1.911.849 2.522.238.283.272.397.186.722-.064.238-.211.812-.271 1.04-.086.33-.352.448-.648.326-1.813-.74-2.646-2.728-2.646-4.973 0-3.692 3.123-8.104 9.309-8.104 4.973 0 8.236 3.6 8.236 7.466 0 5.108-2.837 8.922-7.032 8.922-1.406 0-2.728-.76-3.182-1.617l-.865 3.29c-.25.958-.74 2.157-1.104 2.89C9.36 23.82 10.66 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/>
+                  </svg>
+                </a>
+                <a href="#" className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-primary/40 transition-colors">
+                  <Linkedin className="w-7 h-7" />
                 </a>
               </div>
             </div>

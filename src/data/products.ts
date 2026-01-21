@@ -9,8 +9,10 @@ export interface Product {
   priceFrom: number;
   tags: string[];
   deliveryTime: "24h" | "48h" | "72h";
-  styles: ("Royal" | "Minimal" | "Modern" | "Traditional" | "Floral" | "Cinematic")[];
-  languages: ("Telugu" | "Hindi" | "English")[];
+  styles: ("Royal" | "Minimal" | "Modern" | "Traditional"  | "Cinematic" | "Poetic" | "Emotional" | "Vibrant"
+  | "Elegant"  | "Luxury"  | "Animated"  | "Storytelling"  | "Floral"  | "Islamic"  | "Travel"  | "Illustrated"
+  | "Playful"  | "Fun"  )[];
+  languages: ("Telugu" | "Hindi" | "English" | "Urdu" | "Punjabi")[];
   thumbnail: string;
   previewImages: string[];
   bestSeller: boolean;
@@ -348,84 +350,6 @@ export const products: Product[] = [
     deliverables: ['MP4 video (1080p)', 'YouTube version', 'WhatsApp version'],
   },
   // Wedding Invites
-  {
-    id: 'prod-5',
-    title: 'Traditional Telugu Wedding',
-    slug: 'traditional-telugu-wedding',
-    category: 'digital-invites',
-    collection: 'Wedding Invites',
-    collectionSlug: 'wedding-invites',
-    priceFrom: 1499,
-    tags: ['Traditional', 'Telugu', 'Cultural'],
-    deliveryTime: '24h',
-    styles: ['Traditional', 'Royal'],
-    languages: ['Telugu', 'English'],
-    thumbnail: 'https://images.unsplash.com/photo-1520854221256-17451cc331bf?w=800&q=80',
-    previewImages: [
-      'https://images.unsplash.com/photo-1520854221256-17451cc331bf?w=800&q=80',
-    ],
-    bestSeller: true,
-    isNew: false,
-    description: 'Embrace Telugu traditions with our beautifully crafted digital invitation featuring traditional motifs and cultural elements.',
-    whatIncluded: ['Digital PDF invite', 'Event schedule', 'Venue maps', '1 revision'],
-    revisionPolicy: '1 revision included.',
-    deliverables: ['High-res PDF', 'WhatsApp image', 'Instagram story'],
-    religion: ['Hindu'],
-    region: ['South Indian'],
-    subOccasion: ["traditional-wedding", "wedding-invite"]
-  },
-  {
-    id: 'prod-6',
-    title: 'Royal Hindu Wedding Suite',
-    slug: 'royal-hindu-wedding-suite',
-    category: 'digital-invites',
-    collection: 'Wedding Invites',
-    collectionSlug: 'wedding-invites',
-    priceFrom: 2499,
-    tags: ['Royal', 'Hindu', 'Complete Suite'],
-    deliveryTime: '48h',
-    styles: ['Royal', 'Traditional'],
-    languages: ['Hindi', 'English'],
-    thumbnail: 'https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=800&q=80',
-    previewImages: [
-      'https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=800&q=80',
-    ],
-    bestSeller: true,
-    isNew: true,
-    description: 'A complete royal wedding stationery suite with matching designs for all your pre-wedding and wedding events.',
-    whatIncluded: ['5 event cards', 'Save the date', 'RSVP card', 'Thank you card', '2 revisions'],
-    revisionPolicy: '2 revisions included.',
-    deliverables: ['All cards in PDF', 'Print-ready files', 'Social media sizes'],
-    religion: ['Hindu'],
-    region: ['North Indian'],
-    subOccasion: ["wedding-stationery", "save-the-date", "reception-invite"]
-  },
-  {
-    id: 'prod-7',
-    title: 'Modern Minimal Wedding',
-    slug: 'modern-minimal-wedding',
-    category: 'digital-invites',
-    collection: 'Wedding Invites',
-    collectionSlug: 'wedding-invites',
-    priceFrom: 999,
-    tags: ['Minimal', 'Modern', 'Quick'],
-    deliveryTime: '24h',
-    styles: ['Minimal', 'Modern'],
-    languages: ['Hindi', 'English'],
-    thumbnail: 'https://images.unsplash.com/photo-1529636798458-92182e662485?w=800&q=80',
-    previewImages: [
-      'https://images.unsplash.com/photo-1529636798458-92182e662485?w=800&q=80',
-    ],
-    bestSeller: false,
-    isNew: true,
-    description: 'Clean lines, elegant typography, and sophisticated simplicity. Perfect for contemporary couples.',
-    whatIncluded: ['Digital invite', 'Event details', '1 revision'],
-    revisionPolicy: '1 revision included.',
-    deliverables: ['PDF', 'WhatsApp image'],
-    religion: ['Other'],
-    region: ['Other'],
-    subOccasion: ["modern-wedding", "wardrobe-planner"]
-  },
   // Birthday
   {
     id: 'prod-8',
@@ -637,6 +561,404 @@ export const products: Product[] = [
     region: ['South Indian'],
     subOccasion: ["wedding-stationery", "wardrobe-planner", "reception-invite"]
   },
+  /* =====================================================
+   AI VIDEO – STORYBOARD / EMOTIONAL / WEDDING
+===================================================== */
+
+{
+  id: "prod-16",
+  title: "Bride Side Story Wedding Invite",
+  slug: "bride-side-story-wedding-invite",
+  category: "ai-video-invites",
+  collection: "Storyboard",
+  collectionSlug: "storyboard",
+  priceFrom: 5999,
+  tags: ["Bride Side", "Emotional", "Storytelling", "Cinematic"],
+  deliveryTime: "72h",
+  styles: ["Poetic", "Emotional"],
+  languages: ["Hindi", "English"],
+  thumbnail: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&q=80",
+  previewImages: [
+    "https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&q=80",
+  ],
+  bestSeller: true,
+  isNew: true,
+  description:
+    "A deeply emotional bride-side wedding invitation showcasing her journey, family, and love through poetic storytelling.",
+  whatIncluded: [
+    "60–90 sec story video",
+    "Bride-side narration",
+    "Cinematic visuals",
+    "Music",
+    "2 revisions",
+  ],
+  revisionPolicy: "Up to 2 revision rounds included.",
+  deliverables: ["MP4", "WhatsApp Reel", "Instagram Reel"],
+  video: {
+    platform: "youtube",
+    url: "https://youtube.com/shorts/VUaUX0wQcok",
+  },
+},
+
+{
+  id: "prod-17",
+  title: "Indian Cultural Wedding Video Invite",
+  slug: "indian-cultural-wedding-video-invite",
+  category: "ai-video-invites",
+  collection: "AI Wedding Invites",
+  collectionSlug: "wedding-invites",
+  priceFrom: 4499,
+  tags: ["Indian Wedding", "Punjabi", "Sikh", "Traditional"],
+  deliveryTime: "48h",
+  styles: ["Traditional", "Vibrant"],
+  languages: ["Hindi", "English", "Punjabi"],
+  thumbnail: "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=800&q=80",
+  previewImages: [
+    "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=800&q=80",
+  ],
+  bestSeller: false,
+  isNew: false,
+  description:
+    "A rich Indian wedding invitation featuring cultural patterns, rituals, and vibrant visuals.",
+  whatIncluded: [
+    "Animated invite video",
+    "Cultural motifs",
+    "Event details",
+    "1 revision",
+  ],
+  revisionPolicy: "1 revision included.",
+  deliverables: ["MP4"],
+  video: {
+    platform: "youtube",
+    url: "https://youtube.com/shorts/RhbBq0_Q_1c",
+  },
+},
+
+{
+  id: "prod-18",
+  title: "Complete Wedding Ritual Guide Video",
+  slug: "wedding-ritual-guide-video",
+  category: "ai-video-invites",
+  collection: "AI Wedding Invites",
+  collectionSlug: "wedding-invites",
+  priceFrom: 4999,
+  tags: ["Wedding Rituals", "Ceremony Guide", "Traditional"],
+  deliveryTime: "72h",
+  styles: ["Traditional", "Elegant"],
+  languages: ["Hindi", "English"],
+  thumbnail: "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=800&q=80",
+  previewImages: [
+    "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=800&q=80",
+  ],
+  bestSeller: false,
+  isNew: false,
+  description:
+    "A structured digital invite that guides guests through every wedding ritual clearly.",
+  whatIncluded: [
+    "All rituals breakdown",
+    "Timings & flow",
+    "Elegant animation",
+    "2 revisions",
+  ],
+  revisionPolicy: "2 revision rounds included.",
+  deliverables: ["MP4"],
+  video: {
+    platform: "youtube",
+    url: "https://youtube.com/shorts/ImuVId7u6L8",
+  },
+},
+
+{
+  id: "prod-19",
+  title: "All-in-One Wedding Celebration Video",
+  slug: "all-in-one-wedding-celebration-video",
+  category: "ai-video-invites",
+  collection: "AI Wedding Invites",
+  collectionSlug: "wedding-invites",
+  priceFrom: 6999,
+  tags: ["All Events", "Luxury", "Premium"],
+  deliveryTime: "72h",
+  styles: ["Luxury", "Modern"],
+  languages: ["Hindi", "English"],
+  thumbnail: "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=800&q=80",
+  previewImages: [
+    "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=800&q=80"
+  ],
+  bestSeller: false,
+  isNew: false,
+  description:
+    "One complete AI-powered wedding invitation covering every event in a single experience.",
+  whatIncluded: [
+    "Haldi to Reception",
+    "Custom characters",
+    "Event flow",
+    "3 revisions",
+  ],
+  revisionPolicy: "3 revision rounds included.",
+  deliverables: ["MP4", "WhatsApp"],
+  video: {
+    platform: "youtube",
+    url: "https://youtube.com/shorts/RmnkLZ-Ov5w",
+  },
+},
+
+{
+  id: "prod-20",
+  title: "AI Digital Invite for Special Occasions",
+  slug: "ai-digital-invite-special-occasions",
+  category: "ai-video-invites",
+  collection: "Birthday-AI Invites",
+  collectionSlug: "birthday",
+  priceFrom: 2999,
+  tags: ["AI Invite", "Birthday", "Housewarming", "Engagement"],
+  deliveryTime: "48h",
+  styles: ["Modern", "Animated"],
+  languages: ["Hindi", "English"],
+  thumbnail: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=800&q=80",
+  previewImages: [
+    "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=800&q=80"
+  ],
+  bestSeller: false,
+  isNew: true,
+  description:
+    "AI-powered digital invitation videos for weddings, birthdays, and celebrations.",
+  whatIncluded: ["Custom video", "Music", "1 revision"],
+  revisionPolicy: "1 revision included.",
+  deliverables: ["MP4"],
+  video: {
+    platform: "youtube",
+    url: "https://youtube.com/shorts/TjfS3ntM5-Y",
+  },
+},
+
+{
+  id: "prod-21",
+  title: "Love Story Wedding Invitation Video",
+  slug: "love-story-wedding-invitation-video",
+  category: "ai-video-invites",
+  collection: "Storyboard",
+  collectionSlug: "storyboard",
+  priceFrom: 5499,
+  tags: ["Love Story", "Chat to Shaadi", "Cinematic"],
+  deliveryTime: "72h",
+  styles: ["Storytelling", "Cinematic"],
+  languages: ["Hindi", "English"],
+  thumbnail: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&q=80",
+  previewImages: [
+    "https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&q=80"
+  ],
+  bestSeller: true,
+  isNew: false,
+  description:
+    "A cinematic love story invitation from first chat to wedding day.",
+  whatIncluded: [
+    "Love story",
+    "Haldi + Sangeet + Wedding",
+    "Custom music",
+    "3 revisions",
+  ],
+  revisionPolicy: "Up to 3 revision rounds included.",
+  deliverables: ["MP4"],
+  video: {
+    platform: "youtube",
+    url: "https://youtube.com/shorts/DdfYvphGJq8",
+  },
+},
+
+/* =====================================================
+   SAVE THE DATE
+===================================================== */
+
+{
+  id: "prod-22",
+  title: "Save The Date Animated Invite",
+  slug: "save-the-date-animated-invite",
+  category: "digital-invites",
+  collection: "Wedding Invites",
+  collectionSlug: "wedding-invites",
+  priceFrom: 1499,
+  tags: ["Save The Date", "Modern", "Elegant"],
+  deliveryTime: "24h",
+  styles: ["Minimal", "Floral"],
+  languages: ["Hindi", "English"],
+  thumbnail: "https://images.unsplash.com/photo-1529636798458-92182e662485?w=800&q=80",
+  previewImages: [
+    "https://images.unsplash.com/photo-1529636798458-92182e662485?w=800&q=80"
+  ],
+  bestSeller: false,
+  isNew: false,
+  description:
+    "A modern animated Save The Date invite designed for reels and WhatsApp.",
+  whatIncluded: ["Animated Save The Date", "1 revision"],
+  revisionPolicy: "1 revision included.",
+  deliverables: ["MP4"],
+  
+  video: {
+    platform: "youtube",
+    url: "https://youtube.com/shorts/u5DHR8RrWNk",
+  },
+  subOccasion: [ "save-the-date"]
+},
+
+/* =====================================================
+   MUSLIM WEDDING
+===================================================== */
+
+{
+  id: "prod-23",
+  title: "Muslim Nikah Digital Video Invite",
+  slug: "muslim-nikah-digital-video-invite",
+  category: "digital-invites",
+  collection: "Wedding Invites",
+  collectionSlug: "wedding-invites",
+  priceFrom: 1999,
+  tags: ["Nikah", "Muslim Wedding", "Islamic"],
+  deliveryTime: "48h",
+  styles: ["Elegant", "Islamic"],
+  languages: ["Urdu", "Hindi", "English"],
+  thumbnail: "https://images.unsplash.com/photo-1520854221256-17451cc331bf?w=800&q=80",
+  previewImages: [
+    "https://images.unsplash.com/photo-1520854221256-17451cc331bf?w=800&q=80"
+  ],
+  bestSeller: false,
+  isNew: false,
+  description:
+    "A graceful Islamic wedding invitation with Quranic verses and elegant visuals.",
+  whatIncluded: ["Nikah details", "Islamic design", "Music"],
+  revisionPolicy: "1 revision included.",
+  deliverables: ["MP4"],
+  video: {
+    platform: "youtube",
+    url: "https://youtu.be/Oz6EYL16S3k",
+  },
+  religion: ["Muslim"],
+  region: ["North Indian"],
+  subOccasion: ["nikah", "wedding-invite"]
+},
+
+/* =====================================================
+   DESTINATION WEDDING
+===================================================== */
+
+{
+  id: "prod-24",
+  title: "Destination Wedding Video Invite",
+  slug: "destination-wedding-video-invite",
+  category: "ai-video-invites",
+  collection: "AI Wedding Invites",
+  collectionSlug: "wedding-invites",
+  priceFrom: 5999,
+  tags: ["Destination Wedding", "Travel Theme", "Luxury"],
+  deliveryTime: "72h",
+  styles: ["Cinematic", "Travel"],
+  languages: ["Hindi", "English"],
+  thumbnail: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=800&q=80",
+  previewImages: [
+    "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=800&q=80"
+  ],
+  bestSeller: false,
+  isNew: false,
+  description:
+    "A travel-inspired destination wedding invitation filled with romance and wanderlust.",
+  whatIncluded: ["Destination visuals", "Itinerary", "2 revisions"],
+  revisionPolicy: "2 revision rounds included.",
+  deliverables: ["MP4"],
+  video: {
+    platform: "youtube",
+    url: "https://youtu.be/SHwLMFu1Flo",
+  },
+},
+
+/* =====================================================
+   CARICATURE INVITES
+===================================================== */
+
+{
+  id: "prod-25",
+  title: "Caricature Wedding Invitation Video",
+  slug: "caricature-wedding-invitation-video",
+  category: "digital-invites",
+  collection: "Caricature",
+  collectionSlug: "caricature",
+  priceFrom: 2499,
+  tags: ["Caricature", "Fun", "Animated"],
+  deliveryTime: "72h",
+  styles: ["Illustrated", "Playful"],
+  languages: ["Hindi", "English"],
+  thumbnail: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=800&q=80",
+  previewImages: [
+    "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=800&q=80"
+  ],
+  bestSeller: false,
+  isNew: false,
+  description:
+    "A playful caricature-style wedding invitation covering all ceremonies.",
+  whatIncluded: ["Custom caricatures", "Event flow", "2 revisions"],
+  revisionPolicy: "2 revision rounds included.",
+  deliverables: ["MP4"],
+  video: {
+    platform: "youtube",
+    url: "https://youtu.be/nqkD7k4BaSY",
+  },
+},
+
+{
+  id: "prod-26",
+  title: "Caricature Save The Date Invite",
+  slug: "caricature-save-the-date-invite",
+  category: "digital-invites",
+  collection: "Caricature",
+  collectionSlug: "caricature",
+  priceFrom: 1999,
+  tags: ["Caricature", "Save The Date"],
+  deliveryTime: "48h",
+  styles: ["Fun", "Illustrated"],
+  languages: ["Hindi", "English"],
+  thumbnail: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=800&q=80",
+  previewImages: [
+    "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=800&q=80"
+  ],
+  bestSeller: false,
+  isNew: false,
+  description:
+    "A fun caricature Save The Date invitation to begin your wedding journey.",
+  whatIncluded: ["Caricature art", "Animated date"],
+  revisionPolicy: "1 revision included.",
+  deliverables: ["MP4"],
+  video: {
+    platform: "youtube",
+    url: "https://youtu.be/lD8-jmnGQZg",
+  },
+},
+
+{
+  id: "prod-27",
+  title: "Royal Rajasthani Caricature Wedding",
+  slug: "royal-rajasthani-caricature-wedding",
+  category: "digital-invites",
+  collection: "Caricature",
+  collectionSlug: "caricature",
+  priceFrom: 3499,
+  tags: ["Caricature", "Royal", "Rajasthani"],
+  deliveryTime: "72h",
+  styles: ["Royal", "Traditional"],
+  languages: ["Hindi", "English"],
+  thumbnail: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=800&q=80",
+  previewImages: [
+    "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=800&q=80"
+  ],
+  bestSeller: false,
+  isNew: false,
+  description:
+    "A royal Rajasthani caricature wedding invitation with grand visuals.",
+  whatIncluded: ["Reception & Phere", "Custom scenes"],
+  revisionPolicy: "1 revision included.",
+  deliverables: ["MP4"],
+  video: {
+    platform: "youtube",
+    url: "https://youtu.be/VxAC6-1YKDQ",
+  },
+},
 ];
 
 export const processSteps = [

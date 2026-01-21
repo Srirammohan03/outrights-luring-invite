@@ -90,7 +90,7 @@ function getYouTubeId(url: string): string | null {
 function getYouTubeThumb(url: string): string | null {
   const id = getYouTubeId(url);
   if (!id) return null;
-  return `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
+  return `https://i.ytimg.com/vi/${id}/maxresdefault.jpg`;
 }
 
 function normalizeInstagramUrl(url: string) {
