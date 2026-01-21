@@ -21,6 +21,7 @@ import ScrollExpandMedia from "@/components/ui/scroll-expansion-hero";
 import MouseButterflyTrail from "@/components/ui/MouseButterflyTrail";
 
 import InviteSection from "@/components/InviteSection";
+import InstagramReelsHighlights from "@/components/InstagramReelsHighlights";
 
 const Index = () => {
   // ✅ FIX: avoid window.open collision, define state
@@ -67,7 +68,8 @@ const Index = () => {
         {/* <CategoriesCarousel /> */}
 
         <ProcessScrollSection />
-        <BestSellersCarousel />
+        <InstagramReelsHighlights />
+        {/* <BestSellersCarousel /> */}
         <StatsCounter />
         <TestimonialsSection />
         {/* <CollectionCarousel /> */}
