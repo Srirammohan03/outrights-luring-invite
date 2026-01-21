@@ -294,7 +294,7 @@ export const products: Product[] = [
     whatIncluded: ['45-60 second video', 'Minimal animation style', 'Typography focus', 'Background music', '1 revision round'],
     revisionPolicy: '1 revision round included. Additional revisions at ₹500 each.',
     deliverables: ['MP4 video (1080p)', 'WhatsApp optimized version'],
-     video: {
+    video: {
       platform: "youtube", // local | youtube | instagram | pinterest
       url: "https://youtube.com/shorts/nXvMTCadXEc?si=cU_o-wRQqLNB2OUg",
       // thumbnail: "/videos/royal-3d-palace-poster.jpg" // optional
@@ -450,7 +450,7 @@ export const products: Product[] = [
     revisionPolicy: '1 revision included.',
     deliverables: ['PDF', 'WhatsApp image'],
     subOccasion: ['1st-birthday', 'kids-birthday'],
-     video: {
+    video: {
       platform: "youtube", // local | youtube | instagram | pinterest
       url: "https://youtube.com/shorts/nXvMTCadXEc?si=cU_o-wRQqLNB2OUg",
       // thumbnail: "/videos/royal-3d-palace-poster.jpg" // optional
@@ -805,38 +805,38 @@ export const trendingVideos: TrendingVideoItem[] = [
     id: 'tv-2',
     productSlug: 'love-story-timeline',
     platform: 'youtube',
-    url: 'https://youtube.com/shorts/nXvMTCadXEc?si=cU_o-wRQqLNB2OUg',
+    url: 'https://youtube.com/shorts/TjfS3ntM5-Y?si=7lGBaW_-jNB-cwHa',
   },
   // Example Local MP4 (put file in /public/videos/)
   {
     id: 'tv-3',
     productSlug: 'modern-minimal-ai-video',
-    platform: 'local',
-    url: '/videos/sample.mp4',
-    // thumbnail optional for local videos too (poster)
+    platform: 'youtube',
+    url: 'https://youtube.com/shorts/I82HExqjZjY?si=g7S85R2mItq8g3wO',
+    // thumbnail optional for youtube videos too (poster)
     // thumbnail: '/videos/sample-poster.jpg',
   },
   {
     id: 'tv-4',
     productSlug: 'modern-minimal-ai-video',
-    platform: 'local',
-    url: '/videos/sample.mp4',
-    // thumbnail optional for local videos too (poster)
+    platform: 'youtube',
+    url: 'https://youtube.com/shorts/Unr1igZThjs?si=2uNLb3z3gtFN2VYD',
+    // thumbnail optional for youtube videos too (poster)
     // thumbnail: '/videos/sample-poster.jpg',
   },
   {
     id: 'tv-5',
     productSlug: 'modern-minimal-ai-video',
-    platform: 'local',
-    url: '/videos/sample.mp4',
-    // thumbnail optional for local videos too (poster)
+    platform: 'youtube',
+    url: 'https://youtube.com/shorts/FCO0Q7eHxew?si=Q8xLTyBWDVkQnzt1',
+    // thumbnail optional for youtube videos too (poster)
     // thumbnail: '/videos/sample-poster.jpg',
   },
   {
     id: 'tv-6',
     productSlug: 'modern-minimal-ai-video',
-    platform: 'local',
-    url: '/videos/sample.mp4',
+    platform: 'youtube',
+    url: 'https://youtube.com/shorts/RmnkLZ-Ov5w?si=AQ9RfDYFKBfiEtSw',
     // thumbnail optional for local videos too (poster)
     // thumbnail: '/videos/sample-poster.jpg',
   },

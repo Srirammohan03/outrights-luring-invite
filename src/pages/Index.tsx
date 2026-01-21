@@ -44,7 +44,7 @@ const Index = () => {
       <main className="relative z-10">
         <ScrollExpandMedia
           mediaType="video"
-          mediaSrc="/videos/d.mp4"
+          mediaSrc="https://youtu.be/8SOjpEQlIhI?si=abMoXkAc5qeIEKOr"
           bgImageSrc="https://images.unsplash.com/photo-1506744038136-46273834b3fb"
           title="Outrights Luring Invite"
           date="2025"
@@ -52,7 +52,7 @@ const Index = () => {
         />
 
         {/* Envelope scroll → modal */}
-        <InviteSection  />
+        <InviteSection />
 
         {/* <AboutModal
           open={aboutOpen}
@@ -65,14 +65,13 @@ const Index = () => {
         <ServicesSection />
         <WhyChooseUs />
         {/* <CategoriesCarousel /> */}
-       
+
         <ProcessScrollSection />
         <BestSellersCarousel />
         <StatsCounter />
         <TestimonialsSection />
         {/* <CollectionCarousel /> */}
-       
-       
+
         {/* <ShowcaseParallax /> */}
         {/* <FAQPreview /> */}
         {/* <ContactFormSection /> */}
