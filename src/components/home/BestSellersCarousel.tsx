@@ -133,7 +133,7 @@ function useInstagramEmbed(url: string | null) {
     }
 
     const existing = document.querySelector(
-      'script[data-instgrm-embed="true"]'
+      'script[data-instgrm-embed="true"]',
     ) as HTMLScriptElement | null;
     if (existing) {
       existing.addEventListener("load", process, { once: true });
@@ -242,11 +242,11 @@ export default function BestSellersCarousel() {
   const handleWhatsAppEnquiry = (product: Product) => {
     const url = `${window.location.origin}/product/${product.slug}`;
     const msg = encodeURIComponent(
-      `Hi! I'm interested in:\n\n📌 ${product.title}\n💰 From ₹${product.priceFrom}\n🔗 ${url}`
+      `Hi! I'm interested in:\n\n📌 ${product.title}\n💰 From ₹${product.priceFrom}\n🔗 ${url}`,
     );
     window.open(
       `https://api.whatsapp.com/send?phone=919121080131&text=${msg}`,
-      "_blank"
+      "_blank",
     );
   };
 
@@ -277,7 +277,6 @@ export default function BestSellersCarousel() {
               </h2>
             </div>
 
-            {/* ✅ Desktop: stays top-right; Mobile: centered below heading */}
             <div className="mt-4 flex justify-center md:mt-0 md:absolute md:right-0 md:top-1/2 md:-translate-y-1/2">
               <Button asChild variant="ctaOutline" className="group">
                 <Link to="/collections">
@@ -390,29 +389,6 @@ export default function BestSellersCarousel() {
                                 )}
                               </button>
                             )}
-
-                            <div className="absolute bottom-4 left-4 right-4 z-20 flex gap-2">
-                              <Button asChild variant="hero" className="flex-1">
-                                <Link to={`/product/${product.slug}`}>
-                                  View Details
-                                </Link>
-                              </Button>
-
-                              <Button
-                                type="button"
-                                variant="whatsapp"
-                                className="flex-1"
-                                onClick={() => handleWhatsAppEnquiry(product)}
-                              >
-                                WhatsApp
-                              </Button>
-                            </div>
-                          </div>
-
-                          <div className="p-4">
-                            <h3 className="font-normal text-foreground line-clamp-1 font-semibold">
-                              {product.title}
-                            </h3>
                           </div>
                         </div>
                       </motion.div>
@@ -455,7 +431,7 @@ function BestSellerVideoModal({
   const embedSrc =
     platform === "local" ? null : getEmbedSrc(platform, normalizedInstaUrl);
   const instaReady = useInstagramEmbed(
-    platform === "instagram" ? normalizedInstaUrl : null
+    platform === "instagram" ? normalizedInstaUrl : null,
   );
 
   return (
@@ -570,7 +546,7 @@ function BestSellerVideoModal({
             onClick={() =>
               window.open(
                 `https://api.whatsapp.com/send?phone=919121080131`,
-                "_blank"
+                "_blank",
               )
             }
           >
