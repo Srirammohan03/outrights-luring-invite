@@ -36,6 +36,10 @@ function extractEmbedUrl(url: string) {
 export default function InstagramReelsHighlights() {
   const scrollerRef = useRef<HTMLDivElement>(null);
 
+  // Auto-scroll control
+  const autoTimerRef = useRef<number | null>(null);
+  const autoPausedUntilRef = useRef<number>(0);
+
   const reels = useMemo(
     () =>
       INSTAGRAM_REELS.map((r) => ({
@@ -45,32 +49,57 @@ export default function InstagramReelsHighlights() {
     []
   );
 
-  /* =========================================================
-     ✅ Auto-scroll carousel (ambient motion)
-  ========================================================= */
-  useEffect(() => {
+  const stopAuto = () => {
+    if (autoTimerRef.current) {
+      window.clearInterval(autoTimerRef.current);
+      autoTimerRef.current = null;
+    }
+  };
+
+  const startAuto = () => {
     const el = scrollerRef.current;
     if (!el) return;
+    if (autoTimerRef.current) return;
 
     let dir = 1;
-    const speed = 0.4;
+    const speed = 0.45;
 
-    const interval = setInterval(() => {
+    autoTimerRef.current = window.setInterval(() => {
+      const now = Date.now();
+      if (now < autoPausedUntilRef.current) return;
+
       el.scrollLeft += dir * speed;
 
-      if (el.scrollLeft + el.clientWidth >= el.scrollWidth - 10) dir = -1;
-      if (el.scrollLeft <= 10) dir = 1;
-    }, 20);
+      // bounce at edges
+      if (el.scrollLeft + el.clientWidth >= el.scrollWidth - 2) dir = -1;
+      if (el.scrollLeft <= 2) dir = 1;
+    }, 16);
+  };
 
-    return () => clearInterval(interval);
+  /* =========================================================
+     ✅ Auto-scroll carousel (ambient motion)
+     - pauses when user hovers or uses arrows
+  ========================================================= */
+  useEffect(() => {
+    startAuto();
+    return () => stopAuto();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   /* =========================================================
-     ✅ Arrow scroll
+     ✅ Arrow scroll (WORKING)
   ========================================================= */
   const scroll = (dir: "left" | "right") => {
-    scrollerRef.current?.scrollBy({
-      left: dir === "left" ? -360 : 360,
+    const el = scrollerRef.current;
+    if (!el) return;
+
+    // Pause auto-scroll for 2 seconds so it doesn't fight the button scroll
+    autoPausedUntilRef.current = Date.now() + 2000;
+
+    // Scroll by ~1 card
+    const step = 360 + 24; // card-ish width + gap
+    el.scrollBy({
+      left: dir === "left" ? -step : step,
       behavior: "smooth",
     });
   };
@@ -94,6 +123,7 @@ export default function InstagramReelsHighlights() {
               onClick={() => scroll("left")}
               className="absolute left-[-24px] top-1/2 z-20 -translate-y-1/2 rounded-full border border-neutral-300 bg-white/90 p-3 shadow-md backdrop-blur transition hover:bg-white"
               aria-label="Scroll left"
+              type="button"
             >
               ←
             </button>
@@ -103,6 +133,7 @@ export default function InstagramReelsHighlights() {
               onClick={() => scroll("right")}
               className="absolute right-[-24px] top-1/2 z-20 -translate-y-1/2 rounded-full border border-neutral-300 bg-white/90 p-3 shadow-md backdrop-blur transition hover:bg-white"
               aria-label="Scroll right"
+              type="button"
             >
               →
             </button>
@@ -110,7 +141,16 @@ export default function InstagramReelsHighlights() {
             {/* ================= SLIDER ================= */}
             <div
               ref={scrollerRef}
-              className="flex gap-6 overflow-x-hidden"
+              // ✅ must be scrollable for arrows to work
+              className="flex gap-6 overflow-x-auto scroll-smooth pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+              onMouseEnter={() => {
+                // pause while user interacts
+                autoPausedUntilRef.current = Date.now() + 9999999;
+              }}
+              onMouseLeave={() => {
+                // resume after leaving
+                autoPausedUntilRef.current = Date.now() + 0;
+              }}
             >
               {reels.map((item, i) => (
                 <div
@@ -118,7 +158,7 @@ export default function InstagramReelsHighlights() {
                   className="relative h-[560px] w-[320px] shrink-0 overflow-hidden rounded-2xl"
                 >
                   <iframe
-                    src={item.embed}
+                    src={item.embed as string}
                     className="h-full w-full"
                     loading="lazy"
                     allow="encrypted-media; fullscreen"
