@@ -173,15 +173,13 @@ const Header: React.FC = () => {
             <div className="flex items-center justify-between py-2">
               {/* Logo */}
               <Link to="/" className="relative h-20 flex items-center">
-                {done && (
-                  <motion.img
-                    layoutId="site-logo"
-                    src="https://res.cloudinary.com/drdotym31/image/upload/v1750078130/main-logo-1-1024x795_lfasd5.webp"
-                    alt="Logo"
-                    className="h-16 sm:h-20 w-auto object-contain"
-                    transition={{ duration: 0.8, ease: "easeInOut" }}
-                  />
-                )}
+                <motion.img
+                  // layoutId="site-logo"
+                  src="https://res.cloudinary.com/drdotym31/image/upload/v1750078130/main-logo-1-1024x795_lfasd5.webp"
+                  alt="Logo"
+                  className="h-16 sm:h-20 w-auto object-contain"
+                  transition={{ duration: 0.8, ease: "easeInOut" }}
+                />
               </Link>
 
               {/* Desktop Nav */}
