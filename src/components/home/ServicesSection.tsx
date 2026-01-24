@@ -60,7 +60,7 @@ const services = [
     fullDesc:
       "Bring your love story to life with cinematic AI-powered videos featuring 3D animations, emotional storytelling, and modern visual effects.",
     image:
-      "https://images.unsplash.com/photo-1529634806980-85c3dd6d34ac?w=800&h=600&fit=crop",
+      "/images/AI.jpeg",
     link: "/collections?category=ai-video-invites",
   },
   {
@@ -69,7 +69,7 @@ const services = [
     shortDesc: "Elegant, modern & eco-friendly invites",
     fullDesc:
       "Beautifully crafted digital invitations ranging from traditional Indian designs to sleek modern styles.",
-    image: "/assets/digital-invites.webp",
+    image: "/images/Wedding invites.jpeg",
     link: "/collections?category=digital-invites",
   },
   {
@@ -78,7 +78,7 @@ const services = [
     shortDesc: "Personalized monograms & wedding logos",
     fullDesc:
       "Unique couple monograms and signature wedding logos that become the visual identity of your celebration.",
-    image: "/assets/custom-logo.webp",
+    image: "/images/logos.jpeg",
     link: "/collections/logo",
   },
   {
@@ -87,7 +87,7 @@ const services = [
     shortDesc: "Fun & personalized couple portraits",
     fullDesc:
       "Playful hand-drawn caricatures filled with charm, emotions, and personal details.",
-    image: "/assets/caricature.webp",
+    image: "/images/Caricature.jpeg",
     link: "/collections/caricature",
   },
   {
@@ -96,7 +96,7 @@ const services = [
     shortDesc: "A perfectly matched stationery suite",
     fullDesc:
       "Save-the-dates, invitations, menus, place cards, and thank-you notes — all beautifully coordinated.",
-    image: "/assets/stationery.avif",
+    image: "/images/stationary.jpeg",
     link: "/collections/stationery",
   },
   {
@@ -105,7 +105,7 @@ const services = [
     shortDesc: "Memorable wedding keepsakes",
     fullDesc:
       "Thoughtfully designed custom magnets and badges as wedding favours and lasting souvenirs.",
-    image: "/assets/magnet.jpg",
+    image: "/images/magnets and badges.jpeg",
     link: "/contact",
   },
   {
@@ -114,7 +114,7 @@ const services = [
     shortDesc: "Your memories, beautifully dated",
     fullDesc:
       "Personalized wedding calendars featuring your most cherished moments.",
-    image: "/assets/wedding-cal.webp",
+    image: "/images/calender.jpeg",
     link: "/contact",
   },
   {
@@ -123,7 +123,7 @@ const services = [
     shortDesc: "Classic invites in digital format",
     fullDesc:
       "High-quality PDF invitations designed for easy sharing and printing.",
-    image: "/assets/pdf-invite.jpg",
+    image: "/images/pdf invition.jpeg",
     link: "/contact",
   },
   {
@@ -132,7 +132,7 @@ const services = [
     shortDesc: "Personalized greetings for every festival",
     fullDesc:
       "Custom-designed festival greeting cards perfect for personal and professional wishes.",
-    image: "/assets/festival.png",
+    image: "/images/festival greeting.jpeg",
     link: "/contact",
   },
 ];

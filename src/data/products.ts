@@ -58,7 +58,7 @@ export const categories: Category[] = [
     slug: 'ai-video-invites',
     description: 'Stunning AI-powered video invitations that bring your special moments to life with cutting-edge technology.',
     collections: ['3d-ai-video', 'storyboard'],
-    thumbnail: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80',
+    thumbnail: '/images/AI.jpeg',
   },
   {
     id: 'cat-2',

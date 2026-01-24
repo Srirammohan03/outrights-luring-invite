@@ -31,7 +31,7 @@ const features: Feature[] = [
     bg: "bg-gradient-to-br from-indigo-50 to-blue-50",
   },
   {
-    icon: "/assets/.png",
+    icon: "/assets/4.png",
     title: "Timely Delivery",
     description:
       "We respect your timeline. Fast, reliable delivery so you and your guests can prepare without stress.",
