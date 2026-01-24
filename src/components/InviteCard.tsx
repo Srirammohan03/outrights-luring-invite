@@ -1,4 +1,3 @@
-// src/components/InviteCard.tsx
 "use client";
 
 const InviteCard = () => {
@@ -16,7 +15,7 @@ const InviteCard = () => {
 
         {/* Content Side */}
         <div className="w-full md:w-[65%] p-4 md:p-10 flex flex-col h-full min-h-0">
-          {/* ✅ Scroll works on mobile + desktop */}
+          {/* Scroll works on mobile + desktop */}
           <div className="flex-1 min-h-0 overflow-y-auto pr-2 md:pr-0">
             <h3 className="font-display text-xl md:text-3xl text-primary mb-3 md:mb-6 font-bold">
               Know Us Well!

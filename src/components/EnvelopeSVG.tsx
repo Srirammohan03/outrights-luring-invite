@@ -20,10 +20,11 @@ const EnvelopeSVG: React.FC<Props> = ({
 }) => {
   return (
     <svg
-      className={className}
+      className={`${className ?? ""} block`}
       viewBox="0 -100 960 700"
       preserveAspectRatio="xMidYMax meet"
-      style={{ overflow: "visible" }}
+      // ✅ Critical: prevent SVG from contributing to page overflow
+      style={{ overflow: "hidden" }}
     >
       <defs>
         <linearGradient id="paperGrad" x1="0" y1="0" x2="0" y2="1">

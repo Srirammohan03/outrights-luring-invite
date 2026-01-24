@@ -172,7 +172,7 @@ export default function Collections() {
                     to={`/collections/${collection.slug}`}
                     className="group block card-luxury rounded-xl overflow-hidden"
                   >
-                    <div className="aspect-[4/3] relative">
+                    <div className="aspect-[3/4] relative">
                       <img
                         src={collection.thumbnail}
                         alt={collection.title}
@@ -180,12 +180,12 @@ export default function Collections() {
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 to-transparent" />
                       <div className="absolute bottom-3 left-3 right-3">
-                        <h3 className="font-heading text-base md:text-lg text-background mb-0.5">
+                        <h3 className="font-heading text-base font-semibold md:text-lg text-background mb-0.5">
                           {collection.title}
                         </h3>
-                        <p className="text-background/70 text-xs">
+                        {/* <p className="text-background/70 text-xs">
                           {collection.productCount} templates
-                        </p>
+                        </p> */}
                       </div>
                     </div>
                   </Link>

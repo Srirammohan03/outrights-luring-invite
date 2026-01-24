@@ -54,15 +54,12 @@ const InviteSection: React.FC = () => {
     if (!section || !wrap || !flap || !seam || !shadow || !card || !flapContainer || !seal) return;
 
     // --- INITIAL STATE (RESET) ---
-
-    // 1. Envelope Parts
     gsap.set(flap, { attr: { points: FLAP_CLOSED } });
     gsap.set(seam, { attr: { points: SEAM_CLOSED } });
     gsap.set(flapContainer, { zIndex: 30 });
     gsap.set(shadow, { opacity: 0 });
     gsap.set(wrap, { clearProps: "transformPerspective, rotateX, transformStyle" });
 
-    // 2. Seal
     gsap.set(seal, {
       scale: isMobile ? 0.8 : 1,
       opacity: 1,
@@ -70,10 +67,10 @@ const InviteSection: React.FC = () => {
     });
 
     gsap.set(card, {
-      y: isMobile ? 100 : 100, 
-      scale: isMobile ? 0.9 : 0.95, // Adjusted mobile scale slightly up since InviteCard is now fluid
+      y: 100,
+      scale: isMobile ? 0.9 : 0.95,
       zIndex: 10,
-      autoAlpha: isMobile ? 0 : 1, // <--- HIDDEN INITIALLY ON MOBILE
+      autoAlpha: isMobile ? 0 : 1,
     });
 
     const ctx = gsap.context(() => {
@@ -92,52 +89,60 @@ const InviteSection: React.FC = () => {
 
       timelineRef.current = tl;
 
-      // === ANIMATION SEQUENCE === //
-
       // 1. Open Flap
-      tl.to(flap, { attr: { points: FLAP_OPEN_OVERSHOOT }, duration: 0.8, ease: "power2.inOut" }, 0)
-        .to(seam, { attr: { points: SEAM_OPEN_OVERSHOOT }, duration: 0.8, ease: "power2.inOut" }, 0)
-        .to(seal, { scale: 1.2, opacity: 0, duration: 0.5 }, 0)
+      tl.to(flap, { attr: { points: FLAP_OPEN_OVERSHOOT }, duration: 0.3, ease: "power2.inOut" }, 0)
+        .to(seam, { attr: { points: SEAM_OPEN_OVERSHOOT }, duration: 0.3, ease: "power2.inOut" }, 0)
+        .to(seal, { scale: 1.2, opacity: 0, duration: 0.3 }, 0)
         .to(shadow, { opacity: 0.14, duration: 0.5 }, 0.2);
 
       // 2. Settle Flap
-      tl.to(flap, { attr: { points: FLAP_OPEN_SETTLE }, duration: 0.4, ease: "power2.out" }, 0.5)
-        .to(seam, { attr: { points: SEAM_OPEN_SETTLE }, duration: 0.4, ease: "power2.out" }, 0.5);
+      tl.to(flap, { attr: { points: FLAP_OPEN_SETTLE }, duration: 0.3, ease: "power2.out" }, 0.2)
+        .to(seam, { attr: { points: SEAM_OPEN_SETTLE }, duration: 0.3, ease: "power2.out" }, 0.2);
 
       // 3. Send Flap to Back
-      tl.set(flapContainer, { zIndex: 0 }, 0.5);
+      tl.set(flapContainer, { zIndex: 0 }, 0.2);
 
       // 4. Extract Card UP
       const wrapH = wrap.getBoundingClientRect().height;
-const extractionY = isMobile ? -(wrapH * 0.9) : -380;
+      const extractionY = isMobile ? -(wrapH * 0.9) : -380;
 
+      tl.to(
+        card,
+        {
+          y: extractionY,
+          duration: 0.2,
+          ease: "power3.inOut",
+        },
+        1.3
+      );
 
-      tl.to(card, {
-        y: extractionY,
-        duration: 0.9,
-        ease: "power3.inOut",
-      }, 2.2);
-
-      // CHANGED: Fade IN card on mobile as it extracts
+      // Fade IN card on mobile
       if (isMobile) {
-        tl.to(card, { 
-            autoAlpha: 1, 
-            duration: 0.6, 
-            ease: "power2.in" 
-        }, 2.4); // Start showing it just as it clears the pocket lip
+        tl.to(
+          card,
+          {
+            autoAlpha: 1,
+            duration: 0.6,
+            ease: "power2.in",
+          },
+          1.4
+        );
       }
 
       // 5. Swap Z-Index
-      tl.set(card, { zIndex: 40 }, 3.0);
+      tl.set(card, { zIndex: 40 }, 1.5);
 
       // 6. Present Card DOWN & Full Scale
-      tl.to(card, {
-        y: 0, 
-        scale: 1, 
-        duration: 0.8,
-        ease: "back.out(0.8)",
-      }, 3.0);
-
+      tl.to(
+        card,
+        {
+          y: 0,
+          scale: 1,
+          duration: 0.8,
+          ease: "back.out(0.8)",
+        },
+        1.7
+      );
     }, sectionRef);
 
     return () => {
@@ -149,16 +154,18 @@ const extractionY = isMobile ? -(wrapH * 0.9) : -380;
   return (
     <section
       ref={sectionRef}
-      className="relative pb-10 w-full min-h-screen bg-cover bg-center bg-no-repeat overflow-hidden flex items-center justify-center"
+      className="relative pb-10 w-full min-h-screen bg-cover bg-center bg-no-repeat overflow-hidden overflow-x-hidden flex items-center justify-center"
       style={{
         backgroundImage: "url('/images/bg3.png')",
       }}
     >
-      <div className="relative w-full h-full flex items-center justify-center py-20 px-4">
-        
+      <div className="relative w-full h-full flex items-center justify-center">
         {/* WRAPPER */}
-        <div ref={wrapRef} className="relative w-[95%] md:w-full max-w-5xl aspect-[960/650]">
-
+        <div
+          ref={wrapRef}
+          // ✅ tighter + safer sizing to prevent overflow
+          className="relative w-full max-w-5xl mx-auto aspect-[960/650] overflow-hidden"
+        >
           {/* BACK LAYER */}
           <div className="absolute inset-0 z-0">
             <EnvelopeSVG part="back" flapShadowRef={flapShadowRef} className="w-full h-full" />
@@ -170,11 +177,6 @@ const extractionY = isMobile ? -(wrapH * 0.9) : -380;
             className="absolute inset-0 flex items-center justify-center z-10"
             style={{ willChange: "transform, opacity" }}
           >
-            {/* CHANGED: 
-               1. Removed fixed width/height on this wrapper.
-               2. Added aspect-ratio matching the card design (820/520) ~ 1.57.
-               This ensures the fluid InviteCard retains its shape.
-            */}
             <div className="w-[92%] md:w-[820px] h-[78vh] max-h-[700px] md:h-[520px] shadow-lg">
               <InviteCard />
             </div>
