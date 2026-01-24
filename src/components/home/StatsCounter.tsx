@@ -68,9 +68,9 @@ export default function StatsCounter() {
     <section className="relative py-16 md:py-10 overflow-hidden">
       {/* Parallax Background */}
       <div 
-        className="absolute inset-0 bg-cover bg-center bg-fixed"
+        className="absolute inset-0 bg-full bg-center bg-fixed"
         style={{
-          backgroundImage: 'url(https://images.unsplash.com/photo-1519741497674-611481863552?w=1920&q=80)',
+          backgroundImage: 'url(/images/journey.jpeg)',
         }}
       />
       
@@ -102,7 +102,7 @@ export default function StatsCounter() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="text-center p-4 md:p-6 font-semibold"
+              className="text-center p-4 md:p-6 font-extrabold"
             >
               <AnimatedNumber value={stat.value} suffix={stat.suffix} />
               <p className="text-background/80 mt-2 text-sm md:text-base font-medium">{stat.label}</p>

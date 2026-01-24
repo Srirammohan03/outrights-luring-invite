@@ -96,7 +96,7 @@ export default function Footer() {
                 <li><Link to="/" className="text-muted-foreground hover:text-primary transition-colors">Home</Link></li>
                 <li><Link to="/collections" className="text-muted-foreground hover:text-primary transition-colors">Collections</Link></li>
                 <li><Link to="/about" className="text-muted-foreground hover:text-primary transition-colors">About Us</Link></li>
-                <li><Link to="/process" className="text-muted-foreground hover:text-primary transition-colors">How It Works</Link></li>
+                {/* <li><Link to="/process" className="text-muted-foreground hover:text-primary transition-colors">How It Works</Link></li> */}
                 <li><Link to="/contact" className="text-muted-foreground hover:text-primary transition-colors">Contact</Link></li>
                 <li><Link to="/faq" className="text-muted-foreground hover:text-primary transition-colors">FAQ</Link></li>
               </ul>

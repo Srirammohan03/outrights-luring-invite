@@ -61,7 +61,7 @@ const services = [
       "Bring your love story to life with cinematic AI-powered videos featuring 3D animations, emotional storytelling, and modern visual effects.",
     image:
       "/images/AI.jpeg",
-    link: "/collections?category=ai-video-invites",
+    link: "/collections/3d-ai-video",
   },
   {
     id: "digital-invites",
@@ -70,7 +70,7 @@ const services = [
     fullDesc:
       "Beautifully crafted digital invitations ranging from traditional Indian designs to sleek modern styles.",
     image: "/images/Wedding invites.jpeg",
-    link: "/collections?category=digital-invites",
+    link: "/collections/wedding-invites",
   },
   {
     id: "custom-logo",
@@ -124,7 +124,7 @@ const services = [
     fullDesc:
       "High-quality PDF invitations designed for easy sharing and printing.",
     image: "/images/pdf invition.jpeg",
-    link: "/contact",
+    link: "/collections/pdf-invites",
   },
   {
     id: "festival-greetings",

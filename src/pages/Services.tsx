@@ -14,7 +14,7 @@ const services = [
     title: 'AI Video Invitations',
     description: 'Experience the future of invitations with our AI-powered video creations. Our 3D animated invitations bring your love story to life with stunning visuals, cinematic transitions, and personalized narratives that captivate your guests from the first frame.',
     features: ['3D Palace Animations', 'Custom Storyboards', 'AI Voice Narration', 'Cinematic Quality'],
-    link: '/collections?category=ai-video-invites',
+    link: '/collections/ai-video-invites',
     price: 'Starting from ₹3,499',
   },
   {

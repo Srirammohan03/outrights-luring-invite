@@ -12,7 +12,7 @@ export default function ProcessScrollSection() {
     <section
       className="relative min-h-screen py-20 flex items-center justify-center overflow-hidden"
       style={{
-        backgroundImage: "url('/images/1-4.webp')",
+        backgroundImage: "url('/images/bg.png')",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
