@@ -5293,6 +5293,318 @@ export const products: Product[] = [
     revisionPolicy: "1 revision included.",
     deliverables: ["High-resolution PNG"],
   },
+    {
+  id: "prod-125",
+  title: "Royal Peacock Monogram Wedding Logo Invitation",
+  slug: "royal-peacock-monogram-wedding-logo-invitation",
+  category: "digital-invites",
+  collection: "Logo Design",
+  collectionSlug: "logo",
+  priceFrom: 3499,
+  tags: [
+    "Wedding Logo",
+    "Monogram Invite",
+    "Peacock Theme",
+    "Royal Wedding",
+    "Floral Wedding Logo",
+    "Hashtag Wedding",
+    "Personalized Monogram"
+  ],
+  deliveryTime: "48h",
+  styles: ["Royal", "Floral", "Elegant", "Illustrated", "Romantic", "Creative"],
+  languages: ["Hindi", "English"],
+  thumbnail: "/logos/1.png",
+  previewImages: [
+    "/logos/1.png"
+  ],
+  bestSeller: true,
+  isNew: true,
+  description:
+    "A regal peacock-inspired wedding monogram logo designed with floral elegance and royal charm. Featuring a personalized couple monogram and wedding hashtag, this logo-style digital invite is perfect for couples who want a unique identity for their big day across invitations, videos, and stationery.",
+  whatIncluded: [
+    "Customized couple monogram initials",
+    "Peacock and floral royal frame design",
+    "Personalized wedding hashtag integration",
+    "High-resolution logo for invites, videos & stationery",
+    "Color and theme customization",
+    "3 revision rounds"
+  ],
+  revisionPolicy:
+    "3 revision rounds included for initials, colors, and design refinements.",
+  deliverables: [
+    "High-resolution PNG (transparent background)",
+    "JPG version for sharing",
+    "PDF version for print usage"
+  ],
+  religion: ["Hindu", "Other"],
+  region: ["South Indian", "North Indian", "East Indian", "West Indian"],
+  subOccasion: [
+    "Wedding",
+    "Wedding Logo",
+    "Monogram Design",
+    "Hashtag Logo"
+  ]
+},
+{
+  id: "prod-126",
+  title: "Lotus Peacock Monogram Wedding Logo Invitation",
+  slug: "lotus-peacock-monogram-wedding-logo-invitation",
+  category: "digital-invites",
+  collection: "Logo Design",
+  collectionSlug: "logo",
+  priceFrom: 3299,
+  tags: [
+    "Wedding Logo",
+    "Monogram Invite",
+    "Lotus Theme",
+    "Peacock Design",
+    "Floral Wedding Logo",
+    "Elegant Monogram",
+    "Personalized Wedding Logo"
+  ],
+  deliveryTime: "48h",
+  styles: ["Floral", "Elegant", "Romantic", "Illustrated", "Creative"],
+  languages: ["Hindi", "English"],
+  thumbnail: "/logos/2.png",
+  previewImages: [
+    "/logo/2.png"
+  ],
+  bestSeller: true,
+  isNew: true,
+  description:
+    "An elegant lotus and peacock inspired wedding monogram logo designed with soft pastel tones and floral beauty. This personalized logo brings together romance, nature, and sophistication, creating a timeless identity for your wedding invites, videos, and stationery.",
+  whatIncluded: [
+    "Customized couple monogram initials",
+    "Lotus floral and peacock illustration theme",
+    "Soft pastel color palette customization",
+    "High-resolution logo for invites, videos & stationery",
+    "Theme and color adjustments as per couple preference",
+    "3 revision rounds"
+  ],
+  revisionPolicy:
+    "3 revision rounds included for initials, colors, and design refinements.",
+  deliverables: [
+    "High-resolution PNG (transparent background)",
+    "JPG version for sharing",
+    "PDF version for print usage"
+  ],
+  religion: ["Hindu", "Other"],
+  region: ["South Indian", "North Indian", "East Indian", "West Indian"],
+  subOccasion: [
+    "Wedding",
+    "Wedding Logo",
+    "Monogram Design",
+    "Floral Logo"
+  ]
+},
+{
+  id: "prod-127",
+  title: "Tropical Peacock Monogram Wedding Logo Invitation",
+  slug: "tropical-peacock-monogram-wedding-logo-invitation",
+  category: "digital-invites",
+  collection: "Logo Design",
+  collectionSlug: "logo",
+  priceFrom: 3399,
+  tags: [
+    "Wedding Logo",
+    "Monogram Invite",
+    "Peacock Theme",
+    "Tropical Floral Logo",
+    "Royal Arch Design",
+    "Destination Wedding Logo",
+    "Personalized Wedding Logo"
+  ],
+  deliveryTime: "48h",
+  styles: ["Vibrant", "Floral", "Royal", "Creative", "Illustrated", "Celebration"],
+  languages: ["Hindi", "English"],
+  thumbnail: "/logos/3.png",
+  previewImages: [
+    "/logos/3.png"
+  ],
+  bestSeller: true,
+  isNew: true,
+  description:
+    "A vibrant tropical floral wedding monogram logo featuring a royal arch frame and elegant peacock illustration. Designed for couples who love colorful celebrations and destination-style themes, this personalized logo creates a unique identity for wedding invites, videos, and stationery.",
+  whatIncluded: [
+    "Customized couple monogram initials",
+    "Tropical floral and peacock illustration theme",
+    "Royal arch frame design",
+    "High-resolution logo for invites, videos & stationery",
+    "Color and theme customization as per preference",
+    "3 revision rounds"
+  ],
+  revisionPolicy:
+    "3 revision rounds included for initials, colors, and design refinements.",
+  deliverables: [
+    "High-resolution PNG (transparent background)",
+    "JPG version for sharing",
+    "PDF version for print usage"
+  ],
+  religion: ["Hindu", "Other"],
+  region: ["South Indian", "North Indian", "East Indian", "West Indian"],
+  subOccasion: [
+    "Wedding",
+    "Wedding Logo",
+    "Monogram Design",
+    "Floral Logo"
+  ]
+},
+{
+  id: "prod-128",
+  title: "Botanical Peacock Monogram Wedding Logo Invitation",
+  slug: "botanical-peacock-monogram-wedding-logo-invitation",
+  category: "digital-invites",
+  collection: "Logo Design",
+  collectionSlug: "logo",
+  priceFrom: 3299,
+  tags: [
+    "Wedding Logo",
+    "Monogram Invite",
+    "Botanical Theme",
+    "Peacock Design",
+    "Lotus Floral Logo",
+    "Elegant Wedding Logo",
+    "Personalized Monogram"
+  ],
+  deliveryTime: "48h",
+  styles: ["Elegant", "Floral", "Minimal", "Illustrated", "Romantic", "Creative"],
+  languages: ["Hindi", "English"],
+  thumbnail: "/logos/4.png",
+  previewImages: [
+    "/logos/4.png"
+  ],
+  bestSeller: true,
+  isNew: true,
+  description:
+    "A premium botanical wedding monogram logo featuring soft floral elements, a graceful peacock, and elegant initials at the center. This nature-inspired design creates a sophisticated and timeless identity for your wedding invites, videos, and stationery.",
+  whatIncluded: [
+    "Customized couple monogram initials",
+    "Botanical wreath with peacock and lotus illustration",
+    "Elegant minimal floral design theme",
+    "High-resolution logo for invites, videos & stationery",
+    "Color and theme customization as per couple preference",
+    "3 revision rounds"
+  ],
+  revisionPolicy:
+    "3 revision rounds included for initials, colors, and design refinements.",
+  deliverables: [
+    "High-resolution PNG (transparent background)",
+    "JPG version for sharing",
+    "PDF version for print usage"
+  ],
+  religion: ["Hindu", "Other"],
+  region: ["South Indian", "North Indian", "East Indian", "West Indian"],
+  subOccasion: [
+    "Wedding",
+    "Wedding Logo",
+    "Monogram Design",
+    "Botanical Logo"
+  ]
+},
+{
+  id: "prod-129",
+  title: "Couple Story Illustrated Wedding Logo Invitation",
+  slug: "couple-story-illustrated-wedding-logo-invitation",
+  category: "digital-invites",
+  collection: "Logo Design",
+  collectionSlug: "wedding-logos",
+  priceFrom: 4499,
+  tags: [
+    "Wedding Logo",
+    "Couple Story Logo",
+    "Illustrated Wedding Logo",
+    "Personalized Artwork",
+    "Romantic Wedding Logo",
+    "Creative Wedding Invite",
+    "Hobby Based Logo"
+  ],
+  deliveryTime: "72h",
+  styles: ["Illustrated", "Creative", "Romantic", "Vibrant", "Storytelling", "Celebration"],
+  languages: ["Hindi", "English"],
+  thumbnail: "/logos/5.png",
+  previewImages: [
+    "/logos/5.png"
+  ],
+  bestSeller: true,
+  isNew: true,
+  description:
+    "A beautifully illustrated wedding logo that tells the couple’s story through their favorite things, memories, and moments. From food and movies to coffee dates and city lights, this personalized artwork transforms your journey into a unique wedding logo perfect for invites, videos, and stationery.",
+  whatIncluded: [
+    "Customized couple illustration artwork",
+    "Integration of hobbies, memories & favorite elements",
+    "Personalized monogram initials and names",
+    "Story-based creative wedding logo design",
+    "High-resolution logo for invites, videos & stationery",
+    "3 revision rounds"
+  ],
+  revisionPolicy:
+    "3 revision rounds included for elements, colors, and illustration refinements.",
+  deliverables: [
+    "High-resolution PNG (transparent background)",
+    "JPG version for sharing",
+    "PDF version for print usage"
+  ],
+  religion: ["Hindu", "Other"],
+  region: ["South Indian", "North Indian", "East Indian", "West Indian"],
+  subOccasion: [
+    "Wedding",
+    "Wedding Logo",
+    "Couple Story Logo",
+    "Illustrated Logo"
+  ]
+},
+{
+  id: "prod-130",
+  title: "Royal Gold Monogram Typography Wedding Logo",
+  slug: "royal-gold-monogram-typography-wedding-logo",
+  category: "digital-invites",
+  collection: "Logo Design",
+  collectionSlug: "logo",
+  priceFrom: 2499,
+  tags: [
+    "Wedding Logo",
+    "Monogram Logo",
+    "Typography Logo",
+    "Minimal Wedding Logo",
+    "Royal Initials",
+    "Golden Logo",
+    "Elegant Wedding Logo"
+  ],
+  deliveryTime: "24h",
+  styles: ["Minimal", "Elegant", "Royal", "Creative"],
+  languages: ["Hindi", "English"],
+  thumbnail: "/logos/6.png",
+  previewImages: [
+    "/logos/6.png"
+  ],
+  bestSeller: true,
+  isNew: true,
+  description:
+    "A premium gold typography monogram wedding logo designed with elegant initials and refined lettering. Perfect for couples who prefer a clean, royal, and minimal identity for their wedding invites, videos, and stationery.",
+  whatIncluded: [
+    "Customized couple monogram initials",
+    "Elegant gold typography design",
+    "Name placement below monogram",
+    "High-resolution logo for invites, videos & stationery",
+    "Color customization options",
+    "2 revision rounds"
+  ],
+  revisionPolicy:
+    "2 revision rounds included for initials, font, and color refinements.",
+  deliverables: [
+    "High-resolution PNG (transparent background)",
+    "JPG version for sharing",
+    "PDF version for print usage"
+  ],
+  religion: ["Hindu", "Muslim", "Christian", "Sikh", "Jain", "Other"],
+  region: ["South Indian", "North Indian", "East Indian", "West Indian", "Other"],
+  subOccasion: [
+    "Wedding",
+    "Wedding Logo",
+    "Monogram Design",
+    "Typography Logo"
+  ]
+},
 
 
 ];
