@@ -1,3 +1,4 @@
+// src\pages\CollectionDetail.tsx
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import FloatingWhatsApp from "@/components/layout/FloatingWhatsApp";

@@ -91,6 +91,7 @@ export default function CollectionFilters({
   if (collectionSlug === "wedding-invites") {
     subOccasionOptions = [
       { value: "save-the-date", label: "Save the Date" },
+      { value: "Engagement", label: "Engagement" },
       { value: "wardrobe-planner", label: "Wardrobe Planner" },
       { value: "wedding-invite", label: "Wedding Invite" },
       { value: "reception-invite", label: "Reception Invite" },
@@ -113,7 +114,7 @@ export default function CollectionFilters({
       { value: "1st-birthday", label: "1st Birthday" },
       { value: "sweet-16", label: "Sweet 16" },
       { value: "18th-birthday", label: "18th Birthday" },
-      { value: "21st-birthday", label: "21st Birthday" },
+      { value: "25th-birthday", label: "25th Birthday" },
       { value: "50th-birthday", label: "50th Birthday" },
       { value: "kids-birthday", label: "Kids Birthday" },
       { value: "baby-shower-birthday", label: "Baby Shower" },
@@ -136,7 +137,7 @@ export default function CollectionFilters({
 
   const toggleFilter = (
     type: keyof Omit<FilterState, "budget" | "sortBy" | "subOccasion">,
-    value: string
+    value: string,
   ) => {
     const current = currentFilters[type] as string[];
     const updated = current.includes(value)
@@ -200,7 +201,7 @@ export default function CollectionFilters({
         <ChevronDown
           className={cn(
             "w-4 h-4 transition-transform",
-            openSection === id && "rotate-180"
+            openSection === id && "rotate-180",
           )}
         />
       </button>
@@ -225,7 +226,7 @@ export default function CollectionFilters({
         "px-3 py-1.5 rounded-full text-xs font-medium transition-all",
         selected
           ? "bg-primary text-primary-foreground"
-          : "bg-muted hover:bg-muted/80 text-muted-foreground hover:text-foreground"
+          : "bg-muted hover:bg-muted/80 text-muted-foreground hover:text-foreground",
       )}
     >
       {children}
@@ -442,7 +443,7 @@ export default function CollectionFilters({
             <span className="inline-flex items-center gap-1 px-2 py-1 bg-primary/10 text-primary rounded-full text-xs">
               {
                 subOccasionOptions.find(
-                  (b) => b.value === currentFilters.subOccasion
+                  (b) => b.value === currentFilters.subOccasion,
                 )?.label
               }
               <button onClick={() => setSubOccasion("")}>
