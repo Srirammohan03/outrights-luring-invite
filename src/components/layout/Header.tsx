@@ -250,20 +250,33 @@ const Header: React.FC = () => {
             </div>
 
             <nav className="space-y-5">
-              {[
-                ...navItems,
-                { label: "ABOUT", slug: "about" },
-                { label: "CONTACT", slug: "contact" },
-              ].map(({ label, slug }) => (
-                <Link
-                  key={slug}
-                  to={slug.startsWith("/") ? slug : `/${slug}`}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="block text-lg font-medium"
-                >
-                  {label}
-                </Link>
-              ))}
+           {navItems.map(({ label, slug }) => (
+  <Link
+    key={slug}
+    to={`/collections/${slug}`}
+    onClick={() => setIsMobileMenuOpen(false)}
+    className="block text-lg font-medium"
+  >
+    {label}
+  </Link>
+))}
+
+<Link
+  to="/about"
+  onClick={() => setIsMobileMenuOpen(false)}
+  className="block text-lg font-medium"
+>
+  ABOUT
+</Link>
+
+<Link
+  to="/contact"
+  onClick={() => setIsMobileMenuOpen(false)}
+  className="block text-lg font-medium"
+>
+  CONTACT
+</Link>
+
 
               {/* ✅ Quote Button Mobile */}
               <button
