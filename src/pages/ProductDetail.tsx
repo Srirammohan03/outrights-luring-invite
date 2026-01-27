@@ -13,11 +13,13 @@ import { useToast } from "@/hooks/use-toast";
 import VideoPreview, { VideoPlatform } from "@/components/shared/VideoPreview";
 import PdfPreview from "@/components/shared/PdfPreview";
 
+const WEB_APP_URL =
+  "https://script.google.com/macros/s/AKfycbxftbJlAIEArdZStPvqh_kq_duTgg5oDDrkcA5AB6k0VQTBg2f7Jk6QcSIbR-dvV_g6hQ/exec";
 export default function ProductDetail() {
   const { slug } = useParams();
   const product = getProductBySlug(slug || "");
   const { toast } = useToast();
-
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [videoOpen, setVideoOpen] = useState(false);
 
   const [formData, setFormData] = useState({
@@ -28,7 +30,58 @@ export default function ProductDetail() {
     language: "English",
     notes: "",
   });
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
 
+    const payload = {
+      productTitle: product.title,
+      collectionSlug: product.collectionSlug,
+      name: formData.name,
+      phone: formData.phone,
+      email: formData.email,
+      date: formData.date,
+      language: formData.language,
+      notes: formData.notes,
+      source: "Product Detail Page",
+      pageUrl: window.location.href,
+    };
+
+    try {
+      await fetch(WEB_APP_URL, {
+        method: "POST",
+        mode: "no-cors", // Required for Google Apps Script
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      toast({
+        title: "Enquiry Sent Successfully!",
+        description: "We'll get back to you shortly. Thank you!",
+      });
+
+      // Reset form
+      setFormData({
+        name: "",
+        phone: "",
+        email: "",
+        date: "",
+        language: "English",
+        notes: "",
+      });
+    } catch (err) {
+      console.error("Form submission error:", err);
+      toast({
+        title: "Submission Failed",
+        description: "Please try WhatsApp or email us directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
   if (!product) return <div>Product not found</div>;
 
   const hasVideo = !!product.video?.url;
@@ -44,7 +97,6 @@ export default function ProductDetail() {
       "_blank",
     );
   };
-
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -132,14 +184,65 @@ export default function ProductDetail() {
               <div className="bg-card border border-border rounded-xl p-6">
                 <h3 className="font-semibold text-lg mb-4">Enquire Now</h3>
 
-                <form className="space-y-4">
-                  <Input placeholder="Your Name" />
-                  <Input placeholder="Phone Number" />
-                  <Input placeholder="Email" />
-                  <Input type="date" />
-                  <Textarea placeholder="Additional notes..." />
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <Input
+                    placeholder="Your Name"
+                    value={formData.name}
+                    onChange={(e) =>
+                      setFormData({ ...formData, name: e.target.value })
+                    }
+                    required
+                  />
+                  <Input
+                    placeholder="Phone Number"
+                    value={formData.phone}
+                    onChange={(e) =>
+                      setFormData({ ...formData, phone: e.target.value })
+                    }
+                    required
+                  />
+                  <Input
+                    type="email"
+                    placeholder="Email"
+                    value={formData.email}
+                    onChange={(e) =>
+                      setFormData({ ...formData, email: e.target.value })
+                    }
+                    required
+                  />
+                  <Input
+                    type="date"
+                    value={formData.date}
+                    onChange={(e) =>
+                      setFormData({ ...formData, date: e.target.value })
+                    }
+                  />
 
-                  <div className="flex gap-4">
+                  {/* Optional: Language dropdown if you want to keep it */}
+                  <select
+                    className="w-full p-3 border rounded-md bg-background text-foreground"
+                    value={formData.language}
+                    onChange={(e) =>
+                      setFormData({ ...formData, language: e.target.value })
+                    }
+                  >
+                    <option value="English">English</option>
+                    <option value="Hindi">Hindi</option>
+                    <option value="Telugu">Telugu</option>
+                    <option value="Urdu">Urdu</option>
+                    <option value="Punjabi">Punjabi</option>
+                  </select>
+
+                  <Textarea
+                    placeholder="Additional notes, custom requirements, or any special requests..."
+                    value={formData.notes}
+                    onChange={(e) =>
+                      setFormData({ ...formData, notes: e.target.value })
+                    }
+                    className="min-h-[100px]"
+                  />
+
+                  <div className="flex flex-col sm:flex-row gap-4">
                     <Button
                       type="button"
                       variant="whatsapp"
@@ -153,14 +256,9 @@ export default function ProductDetail() {
                       type="submit"
                       variant="cta"
                       className="flex-1"
-                      onClick={() =>
-                        toast({
-                          title: "Enquiry submitted",
-                          description: "We’ll contact you shortly.",
-                        })
-                      }
+                      disabled={isSubmitting}
                     >
-                      Email Enquiry
+                      {isSubmitting ? "Sending..." : "Send Enquiry"}
                     </Button>
                   </div>
                 </form>

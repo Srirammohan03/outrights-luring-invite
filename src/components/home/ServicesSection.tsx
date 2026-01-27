@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState, memo } from "react";
-import { motion } from "framer-motion";
+import React, { memo } from "react";
+import { motion, useAnimationControls } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -18,20 +18,14 @@ const FlippingCard = memo(function FlippingCard({
   backContent,
   className,
 }: FlippingCardProps) {
-  const [flipped, setFlipped] = useState(false);
-
   return (
-    <div
-      className="relative w-[300px] sm:w-[320px] lg:w-[340px] perspective-[1200px] cursor-pointer"
-      onClick={() => setFlipped((v) => !v)}
-    >
+    <div className="relative w-[300px] sm:w-[320px] lg:w-[340px] perspective-[1200px] cursor-pointer group">
       <div
         className={cn(
           "relative h-[360px] sm:h-[380px] lg:h-[400px] w-full rounded-2xl",
           "border border-border/40 bg-gradient-to-b from-white/5 to-white/2",
           "shadow-xl transition-transform duration-700 [transform-style:preserve-3d]",
-          "sm:group-hover:[transform:rotateY(180deg)]",
-          flipped && "[transform:rotateY(180deg)]",
+          "group-hover:[transform:rotateY(180deg)]",
           className
         )}
       >
@@ -50,8 +44,6 @@ const FlippingCard = memo(function FlippingCard({
     </div>
   );
 });
-
-/* ───────────────── Services Data ───────────────── */
 const services = [
   {
     id: "ai-video",
@@ -139,16 +131,51 @@ const services = [
 
 /* ───────────────── Page ───────────────── */
 export default function ServicesPage() {
+  const butterflyControls = useAnimationControls();
+
+  const fireButterfly = async () => {
+    await butterflyControls.start({
+      opacity: 1,
+      scale: 1.08,
+      transition: { duration: 0.3, ease: "easeOut" },
+    });
+
+    butterflyControls.start({
+      opacity: 0.9,
+      scale: 1,
+      transition: { duration: 0.6, ease: "easeInOut" },
+    });
+  };
+
   return (
     <main className="bg-background">
-      {/* Hero */}
-      <section className="py-20 bg-gradient-to-b from-background to-muted/30">
+      {/* HERO */}
+      <section className="relative overflow-hidden py-20 bg-gradient-to-b from-background to-muted/30">
+        {/* LEFT BUTTERFLY */}
+        <motion.img
+          src="/assets/Butterflies-GIF-left.gif"
+          alt="butterfly"
+          animate={butterflyControls}
+          initial={{ opacity: 0.9 }}
+          className="pointer-events-none absolute left-[6%] sm:left-[10%] lg:left-[14%] top-[42%] -translate-y-1/2 w-32 sm:w-40 lg:w-48"
+        />
+
+        {/* RIGHT BUTTERFLY */}
+        <motion.img
+          src="/assets/Butterflies-GIF-Right.gif"
+          alt="butterfly"
+          animate={butterflyControls}
+          initial={{ opacity: 0.9 }}
+          className="pointer-events-none absolute right-[6%] sm:right-[10%] lg:right-[14%] top-[42%] -translate-y-1/2 w-32 sm:w-40 lg:w-48"
+        />
+
+        {/* HERO CONTENT */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="max-w-4xl mx-auto text-center px-4"
+          className="relative z-10 max-w-4xl mx-auto text-center px-4"
         >
           <h1 className="text-4xl sm:text-6xl font-bold">
             What We <span className="text-[#A86DCD]">Offer</span>
@@ -161,18 +188,15 @@ export default function ServicesPage() {
         </motion.div>
       </section>
 
-      {/* Services Grid */}
-      <section className="">
+      {/* SERVICES GRID */}
+      <section>
         <div className="container mx-auto px-5 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-10 justify-items-center">
-            {services.map((service, index) => (
-              <motion.div
+            {services.map((service) => (
+              <div
                 key={service.id}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.08 }}
-                className="group flex justify-center"
+                onMouseEnter={fireButterfly}
+                className="group"
               >
                 <Link to={service.link}>
                   <FlippingCard
@@ -202,17 +226,14 @@ export default function ServicesPage() {
                         <p className="text-sm sm:text-base text-foreground/90">
                           {service.fullDesc}
                         </p>
-                        <Button
-                          onClick={(e) => e.stopPropagation()}
-                          className="mt-5 bg-[#A86DCD] hover:bg-[#A86DCD]/90"
-                        >
+                        <Button className="mt-5 bg-[#A86DCD] hover:bg-[#A86DCD]/90">
                           Explore →
                         </Button>
                       </>
                     }
                   />
                 </Link>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
