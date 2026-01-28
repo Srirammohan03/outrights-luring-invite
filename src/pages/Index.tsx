@@ -36,6 +36,7 @@ const Index = () => {
     setAboutOpen(false);
   }, []);
 
+  const isMobile = window.innerWidth < 768;
   return (
     <div className="relative min-h-screen bg-background">
       {/* <MouseButterflyTrail size={300} gifSrc="/images/Butterfly-2.gif" /> */}
@@ -45,8 +46,13 @@ const Index = () => {
       <main className="relative z-10">
         <ScrollExpandMedia
           mediaType="video"
-          mediaSrc="https://youtu.be/8SOjpEQlIhI?si=abMoXkAc5qeIEKOr"
-          bgImageSrc="https://images.unsplash.com/photo-1506744038136-46273834b3fb"
+          mediaSrc={
+            isMobile
+              ? "/assets/Webpage-Vertical-video.mp4"
+              : "/assets/Webpage-Video.mp4"
+          }
+          posterSrc="/assets/video-poster.jpg"
+          bgImageSrc="/images/bg.png"
           title="Outrights Luring Invite"
           date="2025"
           scrollToExpand="Scroll to expand"

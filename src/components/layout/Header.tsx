@@ -88,7 +88,7 @@ const Header: React.FC = () => {
       <div className="sticky top-0 z-50 w-full">
         {/* ================= TOP BAR ================= */}
         <div className="bg-[#a86dcd] text-white text-xs sm:text-sm">
-          <div className="max-w-7xl mx-auto px-3 py-2 grid grid-cols-[auto_1fr_auto] items-center gap-3">
+          <div className="max-w-7xl mx-auto px-3 py-2 grid grid-cols-[auto_1fr] md:grid-cols-[auto_1fr_auto] items-center gap-3">
             {/* Left: Phone + Email (ICONS ONLY ON MOBILE) */}
             <div className="flex items-center gap-3">
               <a
@@ -115,7 +115,7 @@ const Header: React.FC = () => {
             </div>
 
             {/* Center: Slider */}
-            <div className="relative h-5 overflow-hidden justify-self-center text-center w-[190px] sm:w-[360px] md:w-[520px]">
+            <div className="relative h-5 overflow-hidden justify-self-center text-center w-[300px] sm:w-[360px] md:w-[520px]">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeIndex}
@@ -250,33 +250,32 @@ const Header: React.FC = () => {
             </div>
 
             <nav className="space-y-5">
-           {navItems.map(({ label, slug }) => (
-  <Link
-    key={slug}
-    to={`/collections/${slug}`}
-    onClick={() => setIsMobileMenuOpen(false)}
-    className="block text-lg font-medium"
-  >
-    {label}
-  </Link>
-))}
+              {navItems.map(({ label, slug }) => (
+                <Link
+                  key={slug}
+                  to={`/collections/${slug}`}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="block text-lg font-medium"
+                >
+                  {label}
+                </Link>
+              ))}
 
-<Link
-  to="/about"
-  onClick={() => setIsMobileMenuOpen(false)}
-  className="block text-lg font-medium"
->
-  ABOUT
-</Link>
+              <Link
+                to="/about"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="block text-lg font-medium"
+              >
+                ABOUT
+              </Link>
 
-<Link
-  to="/contact"
-  onClick={() => setIsMobileMenuOpen(false)}
-  className="block text-lg font-medium"
->
-  CONTACT
-</Link>
-
+              <Link
+                to="/contact"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="block text-lg font-medium"
+              >
+                CONTACT
+              </Link>
 
               {/* ✅ Quote Button Mobile */}
               <button
