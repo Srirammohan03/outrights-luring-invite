@@ -1,5 +1,5 @@
-import { motion, useInView, useSpring, useTransform } from 'framer-motion';
-import { useRef, useEffect, useState } from 'react';
+import { motion, useInView, useSpring, useTransform } from "framer-motion";
+import { useRef, useEffect, useState } from "react";
 
 interface Stat {
   value: number;
@@ -8,16 +8,16 @@ interface Stat {
 }
 
 const stats: Stat[] = [
-  { value: 3, suffix: '+', label: 'Years Experience' },
-  { value: 5000, suffix: '+', label: 'Design Templates' },
-  { value: 99.9, suffix: '%', label: 'Client Satisfaction' },
-  { value: 300, suffix: '+', label: 'Happy Couples' }, 
+  { value: 3, suffix: "+", label: "Years Experience" },
+  { value: 5000, suffix: "+", label: "Design Templates" },
+  { value: 99.9, suffix: "%", label: "Client Satisfaction" },
+  { value: 500, suffix: "+", label: "Happy Couples" },
 ];
 
 function AnimatedNumber({ value, suffix }: { value: number; suffix: string }) {
   const [displayValue, setDisplayValue] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   const isFloat = !Number.isInteger(value);
 
@@ -36,7 +36,7 @@ function AnimatedNumber({ value, suffix }: { value: number; suffix: string }) {
         setDisplayValue(
           isFloat
             ? Number(currentValue.toFixed(1)) // 👈 keep 1 decimal
-            : Math.floor(currentValue)
+            : Math.floor(currentValue),
         );
 
         if (progress < 1) {
@@ -62,21 +62,20 @@ function AnimatedNumber({ value, suffix }: { value: number; suffix: string }) {
   );
 }
 
-
 export default function StatsCounter() {
   return (
     <section className="relative py-16 md:py-10 overflow-hidden">
       {/* Parallax Background */}
-      <div 
+      <div
         className="absolute inset-0 bg-full bg-center bg-fixed"
         style={{
-          backgroundImage: 'url(/images/journey.jpeg)',
+          backgroundImage: "url(/images/journey.jpeg)",
         }}
       />
-      
+
       {/* Overlay */}
       <div className="absolute inset-0 bg-foreground/65" />
-      
+
       {/* Content */}
       <div className="container-custom relative z-10 px-4">
         <motion.div
@@ -90,7 +89,8 @@ export default function StatsCounter() {
             Our Journey in Numbers
           </h2>
           <p className="text-background/70 max-w-2xl mx-auto text-sm md:text-base">
-            Celebrating milestones of creativity, trust, and unforgettable celebrations.
+            Celebrating milestones of creativity, trust, and unforgettable
+            celebrations.
           </p>
         </motion.div>
 
@@ -105,7 +105,9 @@ export default function StatsCounter() {
               className="text-center p-4 md:p-6 font-extrabold"
             >
               <AnimatedNumber value={stat.value} suffix={stat.suffix} />
-              <p className="text-background/80 mt-2 text-sm md:text-base font-medium">{stat.label}</p>
+              <p className="text-background/80 mt-2 text-sm md:text-base font-medium">
+                {stat.label}
+              </p>
             </motion.div>
           ))}
         </div>

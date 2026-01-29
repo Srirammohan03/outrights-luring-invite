@@ -22,6 +22,7 @@ import MouseButterflyTrail from "@/components/ui/MouseButterflyTrail";
 
 import InviteSection from "@/components/InviteSection";
 import InstagramReelsHighlights from "@/components/InstagramReelsHighlights";
+import VideoHeroSection from "@/components/VideoHero";
 
 const Index = () => {
   // ✅ FIX: avoid window.open collision, define state
@@ -44,7 +45,8 @@ const Index = () => {
       <Header />
 
       <main className="relative z-10">
-        <ScrollExpandMedia
+        <VideoHeroSection />
+        {/* <ScrollExpandMedia
           mediaType="video"
           mediaSrc={
             isMobile
@@ -56,7 +58,7 @@ const Index = () => {
           title="Outrights Luring Invite"
           date="2025"
           scrollToExpand="Scroll to expand"
-        />
+        /> */}
 
         {/* Envelope scroll → modal */}
         <InviteSection />

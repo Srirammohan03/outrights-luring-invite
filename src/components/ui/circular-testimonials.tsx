@@ -1,3 +1,4 @@
+// src\components\ui\circular-testimonials.tsx
 "use client";
 
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
@@ -7,13 +8,13 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 export interface Testimonial {
   quote: string;
   name: string;
-  designation: string;
+  // designation: string;
   src: string;
 }
 
 interface Colors {
   name?: string;
-  designation?: string;
+  // designation?: string;
   testimony?: string;
   arrowBackground?: string;
   arrowForeground?: string;
@@ -22,7 +23,7 @@ interface Colors {
 
 interface FontSizes {
   name?: string;
-  designation?: string;
+  // designation?: string;
   quote?: string;
 }
 
@@ -53,14 +54,14 @@ export const CircularTestimonials = ({
 }: CircularTestimonialsProps) => {
   // Theme-friendly defaults (can be overridden)
   const colorName = colors.name ?? "hsl(var(--foreground))";
-  const colorDesignation = colors.designation ?? "hsl(var(--muted-foreground))";
+  // const colorDesignation = colors.designation ?? "hsl(var(--muted-foreground))";
   const colorTestimony = colors.testimony ?? "hsl(var(--foreground))";
   const colorArrowBg = colors.arrowBackground ?? "hsl(var(--primary))";
   const colorArrowFg = colors.arrowForeground ?? "hsl(var(--primary-foreground))";
   const colorArrowHoverBg = colors.arrowHoverBackground ?? "hsl(var(--foreground))";
 
   const fontSizeName = fontSizes.name ?? "1.5rem";
-  const fontSizeDesignation = fontSizes.designation ?? "0.95rem";
+  // const fontSizeDesignation = fontSizes.designation ?? "0.95rem";
   const fontSizeQuote = fontSizes.quote ?? "1.125rem";
 
   const [activeIndex, setActiveIndex] = useState(0);
@@ -216,12 +217,12 @@ export const CircularTestimonials = ({
                 {activeTestimonial.name}
               </h3>
 
-              <p
+              {/* <p
                 className="mt-1"
                 style={{ color: colorDesignation, fontSize: fontSizeDesignation }}
               >
                 {activeTestimonial.designation}
-              </p>
+              </p> */}
 
               <motion.p
                 className="mt-6 leading-relaxed"

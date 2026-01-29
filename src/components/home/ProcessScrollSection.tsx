@@ -46,7 +46,7 @@ export default function ProcessScrollSection() {
           className="w-full flex items-center justify-center"
         >
           <img
-            src="/images/caterpillar 1.png" // <-- replace with your image path
+            src="/assets/caterpillar.png" // <-- replace with your image path
             alt="Process"
             className="w-full max-w-7xl h-auto "
             loading="lazy"
