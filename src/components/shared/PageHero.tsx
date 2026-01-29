@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 
 interface PageHeroProps {
   title: string;
@@ -6,30 +6,35 @@ interface PageHeroProps {
   backgroundImage?: string;
 }
 
-export default function PageHero({ title, subtitle, backgroundImage }: PageHeroProps) {
+export default function PageHero({
+  title,
+  subtitle,
+  backgroundImage,
+}: PageHeroProps) {
   return (
-    <section className="relative min-h-[40vh] md:min-h-[50vh] flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-[30vh]  flex items-center justify-center overflow-hidden">
       {/* Background with parallax effect */}
-      <div 
+      <div
         className="absolute inset-0 bg-cover bg-center bg-fixed"
-        style={{ 
-          backgroundImage: backgroundImage 
-            ? `url(${backgroundImage})` 
-            : 'linear-gradient(135deg, hsl(var(--primary)/0.2), hsl(var(--background)))'
+        style={{
+          backgroundImage: backgroundImage
+            ? `url(${backgroundImage})`
+            : "linear-gradient(135deg, hsl(var(--primary)/0.2), hsl(var(--background)))",
         }}
       />
-      
+
       {/* Overlay gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background" />
-      
+
       {/* Animated orbs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
           className="absolute w-[300px] h-[300px] md:w-[500px] md:h-[500px] rounded-full"
           style={{
-            background: 'radial-gradient(circle, hsl(var(--primary)/0.3), transparent 70%)',
-            top: '-10%',
-            right: '-10%',
+            background:
+              "radial-gradient(circle, hsl(var(--primary)/0.3), transparent 70%)",
+            top: "-10%",
+            right: "-10%",
           }}
           animate={{
             scale: [1, 1.2, 1],
@@ -38,15 +43,16 @@ export default function PageHero({ title, subtitle, backgroundImage }: PageHeroP
           transition={{
             duration: 6,
             repeat: Infinity,
-            ease: 'easeInOut',
+            ease: "easeInOut",
           }}
         />
         <motion.div
           className="absolute w-[200px] h-[200px] md:w-[400px] md:h-[400px] rounded-full"
           style={{
-            background: 'radial-gradient(circle, hsl(var(--primary-glow)/0.2), transparent 70%)',
-            bottom: '-10%',
-            left: '-5%',
+            background:
+              "radial-gradient(circle, hsl(var(--primary-glow)/0.2), transparent 70%)",
+            bottom: "-10%",
+            left: "-5%",
           }}
           animate={{
             scale: [1.2, 1, 1.2],
@@ -55,7 +61,7 @@ export default function PageHero({ title, subtitle, backgroundImage }: PageHeroP
           transition={{
             duration: 8,
             repeat: Infinity,
-            ease: 'easeInOut',
+            ease: "easeInOut",
           }}
         />
       </div>

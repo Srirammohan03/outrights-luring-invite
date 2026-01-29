@@ -1,3 +1,4 @@
+// src\components\EnvelopeSVG.tsx
 import React from "react";
 
 // --- FLAP GEOMETRY ---

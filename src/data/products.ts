@@ -5657,53 +5657,79 @@ export const processSteps = [
 export const testimonials = [
   {
     id: 1,
-    name: "Priya & Rahul",
+    name: "Rohan Gandhi",
     location: "Hyderabad",
-    text: "The AI video invitation was beyond our expectations! Our guests were amazed by the quality.",
+    text: `
+Thank you so much for the amazing Save the Date video! It has turned out beautifully, and our guests absolutely loved it. The AI characters look strikingly close to real, and the storyline has been portrayed amazingly. Our favourite moment was the transition from the movie scene into the proposal — it felt magical. Even the music perfectly complements the overall vibe.
+Also, the logo has also given a clear and beautiful storyline, keeping everything clean and well-crafted while showing all the small details of our journey.
+We’re excited and looking forward to the wedding invite now.
+A special thanks to @Michey Prashanth Luring Invite and the whole design team for creating such a lovely illustrated video for us.`,
     rating: 5,
     occasion: "Wedding",
     image:
-      "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1400&q=80",
+      "/assets/Rohan.jpeg",
   },
   {
     id: 2,
-    name: "Sneha Reddy",
+    name: "Tanya Arora",
     location: "Vijayawada",
-    text: "Quick delivery and beautiful design. The team was very responsive to our requirements.",
+    text: "They created a beautiful digital wedding video for my sister. It was elegant, heartfelt, and perfectly captured the occasion. Highly recommend!",
     rating: 5,
     occasion: "Anniversary",
     image:
-      "https://images.unsplash.com/photo-1525134479668-1bee5c7c6845?auto=format&fit=crop&w=1400&q=80",
+      "/assets/TanyaArora.png",
   },
   {
     id: 3,
-    name: "Karthik & Divya",
+    name: "Aditi Ghosal",
     location: "Chennai",
-    text: "The caricature invitation was a hit! Everyone loved the personal touch.",
+    text: "The most hardworking lot I have come across in recent times. They”ll patiently listen to all your asks and will ensure they deliver the best. Thankyou for your creation. Go ahead and book them for your special day without a DOUBT!!!",
     rating: 5,
     occasion: "Wedding",
     image:
-      "https://images.unsplash.com/photo-1525134479668-1bee5c7c6845?auto=format&fit=crop&w=1400&q=80",
+      "/assets/AditiGhosal.jpg",
   },
   {
     id: 4,
-    name: "Lakshmi Devi",
+    name: "srishti jain",
     location: "Bangalore",
-    text: "Perfect for our house warming ceremony. Traditional yet modern design.",
+    text: `The services were very nice. Timely responses and lovely creatives.
+The team was super supportive , enthusiastic and accommodating.
+We had a lovely experience and loved the final pieces.`,
     rating: 5,
     occasion: "House Warming",
     image:
-      "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1400&q=80",
+      "/assets/srishtijain.png",
   },
   {
     id: 5,
-    name: "Suresh & Padma",
+    name: "Kamya Purohit",
     location: "Guntur",
-    text: "The storyboard video brought tears to our eyes. Beautifully crafted love story.",
+    text: "Great output, on time response, amazing quality of work, polite and humble ppl to talk to. Amazing experience. Multiple iterations were done and they did it really well. Thank you. Great work",
     rating: 5,
     occasion: "Wedding",
     image:
-      "https://images.unsplash.com/photo-1525134479668-1bee5c7c6845?auto=format&fit=crop&w=1400&q=80",
+      "/assets/KamyaPurohit.jpg",
+  },
+  {
+    id: 6,
+    name: "Suruchi Kabra",
+    location: "Pune",
+    text: "Thanks to Gurleen Mam n her Amazing superb team for making such a beautiful e-invite,they have nailed each point of discussions very well....n patiently listen to ur all requirements n their for u anytime for any changes or suggestions....absolutely proud of this team.. hat's off to der excellent work..n totally trust worthy🙏😍",
+    rating: 5,
+    occasion: "Wedding",
+    image:
+      "/assets/SuruchiKabra.jpg",
+  },
+  {
+    id: 7,
+    name: "S_ Kibo",
+    location: "Pune",
+    text: "Wonderful experience working with the team at luring invites, its a very interactive and joint effort in making the vision come to life, the team actively listens to and promptly makes the required edits to make the invitation truly tailored to your story and narrative 😍✨ highly recommend!! 👍",
+    rating: 5,
+    occasion: "Wedding",
+    image:
+      "/assets/S_Kibo.jpg",
   },
 ];
 

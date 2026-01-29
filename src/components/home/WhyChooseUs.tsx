@@ -76,6 +76,22 @@ export default function WhyChooseUs() {
       </div>
 
       <div className="container mx-auto px-5 sm:px-6 lg:px-8 relative z-10">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16 md:mb-20"
+        >
+          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl text-foreground mb-4 font-bold">
+            Why Choose <span className="text-primary">Luring Invite?</span>
+          </h2>
+          <p className="mt-5 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            We go beyond invitations — we help you create memories your guests
+            will talk about for years.
+          </p>
+        </motion.div>
         {/* Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 lg:gap-12">
           {features.map((feature, index) => (

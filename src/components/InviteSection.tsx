@@ -29,8 +29,6 @@ const InviteSection: React.FC = () => {
   // Layer Refs
   const cardRef = useRef<HTMLDivElement>(null);
   const flapContainerRef = useRef<HTMLDivElement>(null);
-
-  // Seal (logo sticker) ref
   const sealRef = useRef<HTMLButtonElement>(null);
 
   const isMobile = useIsMobile();
@@ -51,14 +49,26 @@ const InviteSection: React.FC = () => {
     const flapContainer = flapContainerRef.current;
     const seal = sealRef.current;
 
-    if (!section || !wrap || !flap || !seam || !shadow || !card || !flapContainer || !seal) return;
+    if (
+      !section ||
+      !wrap ||
+      !flap ||
+      !seam ||
+      !shadow ||
+      !card ||
+      !flapContainer ||
+      !seal
+    )
+      return;
 
-    // --- INITIAL STATE (RESET) ---
+    // --- INITIAL STATE ---
     gsap.set(flap, { attr: { points: FLAP_CLOSED } });
     gsap.set(seam, { attr: { points: SEAM_CLOSED } });
     gsap.set(flapContainer, { zIndex: 30 });
     gsap.set(shadow, { opacity: 0 });
-    gsap.set(wrap, { clearProps: "transformPerspective, rotateX, transformStyle" });
+    gsap.set(wrap, {
+      clearProps: "transformPerspective, rotateX, transformStyle",
+    });
 
     gsap.set(seal, {
       scale: isMobile ? 0.8 : 1,
@@ -90,43 +100,58 @@ const InviteSection: React.FC = () => {
       timelineRef.current = tl;
 
       // 1. Open Flap
-      tl.to(flap, { attr: { points: FLAP_OPEN_OVERSHOOT }, duration: 0.3, ease: "power2.inOut" }, 0)
-        .to(seam, { attr: { points: SEAM_OPEN_OVERSHOOT }, duration: 0.3, ease: "power2.inOut" }, 0)
+      tl.to(
+        flap,
+        {
+          attr: { points: FLAP_OPEN_OVERSHOOT },
+          duration: 0.3,
+          ease: "power2.inOut",
+        },
+        0,
+      )
+        .to(
+          seam,
+          {
+            attr: { points: SEAM_OPEN_OVERSHOOT },
+            duration: 0.3,
+            ease: "power2.inOut",
+          },
+          0,
+        )
         .to(seal, { scale: 1.2, opacity: 0, duration: 0.3 }, 0)
         .to(shadow, { opacity: 0.14, duration: 0.5 }, 0.2);
 
       // 2. Settle Flap
-      tl.to(flap, { attr: { points: FLAP_OPEN_SETTLE }, duration: 0.3, ease: "power2.out" }, 0.2)
-        .to(seam, { attr: { points: SEAM_OPEN_SETTLE }, duration: 0.3, ease: "power2.out" }, 0.2);
+      tl.to(
+        flap,
+        {
+          attr: { points: FLAP_OPEN_SETTLE },
+          duration: 0.3,
+          ease: "power2.out",
+        },
+        0.2,
+      ).to(
+        seam,
+        {
+          attr: { points: SEAM_OPEN_SETTLE },
+          duration: 0.3,
+          ease: "power2.out",
+        },
+        0.2,
+      );
 
       // 3. Send Flap to Back
       tl.set(flapContainer, { zIndex: 0 }, 0.2);
 
       // 4. Extract Card UP
       const wrapH = wrap.getBoundingClientRect().height;
-      const extractionY = isMobile ? -(wrapH * 0.9) : -380;
+      // Adjusted mobile extraction to ensure it doesn't fly too high and cut off
+      const extractionY = isMobile ? -(wrapH * 0.85) : -380;
 
-      tl.to(
-        card,
-        {
-          y: extractionY,
-          duration: 0.2,
-          ease: "power3.inOut",
-        },
-        1.3
-      );
+      tl.to(card, { y: extractionY, duration: 0.2, ease: "power3.inOut" }, 1.3);
 
-      // Fade IN card on mobile
       if (isMobile) {
-        tl.to(
-          card,
-          {
-            autoAlpha: 1,
-            duration: 0.6,
-            ease: "power2.in",
-          },
-          1.4
-        );
+        tl.to(card, { autoAlpha: 1, duration: 0.6, ease: "power2.in" }, 1.4);
       }
 
       // 5. Swap Z-Index
@@ -137,11 +162,11 @@ const InviteSection: React.FC = () => {
         card,
         {
           y: 0,
-          scale: 1,
+          scale: 1, // Ensures full size at the end
           duration: 0.8,
           ease: "back.out(0.8)",
         },
-        1.7
+        1.7,
       );
     }, sectionRef);
 
@@ -154,7 +179,8 @@ const InviteSection: React.FC = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative pb-10 w-full min-h-screen bg-cover bg-center bg-no-repeat overflow-hidden overflow-x-hidden flex items-center justify-center"
+      // Fixed: added max-w-[100vw] and overflow-hidden to strict prevent scrollbars
+      className="relative pb-10 w-full max-w-[100vw] min-h-screen bg-cover bg-center bg-no-repeat overflow-hidden flex items-center justify-center"
       style={{
         backgroundImage: "url('/images/bg3.png')",
       }}
@@ -163,12 +189,15 @@ const InviteSection: React.FC = () => {
         {/* WRAPPER */}
         <div
           ref={wrapRef}
-          // ✅ tighter + safer sizing to prevent overflow
-          className="relative w-full max-w-5xl mx-auto aspect-[960/650] overflow-hidden"
+          className="relative w-full max-w-5xl mx-auto aspect-[960/650]"
         >
           {/* BACK LAYER */}
           <div className="absolute inset-0 z-0">
-            <EnvelopeSVG part="back" flapShadowRef={flapShadowRef} className="w-full h-full" />
+            <EnvelopeSVG
+              part="back"
+              flapShadowRef={flapShadowRef}
+              className="w-full h-full"
+            />
           </div>
 
           {/* CARD LAYER */}
@@ -177,7 +206,28 @@ const InviteSection: React.FC = () => {
             className="absolute inset-0 flex items-center justify-center z-10"
             style={{ willChange: "transform, opacity" }}
           >
-            <div className="w-[92%] md:w-[820px] h-[78vh] max-h-[700px] md:h-[520px] shadow-lg">
+            {/* UPDATED CARD CONTAINER SIZING:
+               - Mobile: w-[95%] for max width, h-[80dvh] for safe height
+               - Desktop: Fixed px sizes
+            */}
+            <div
+              className="
+                w-[95%] 
+                md:w-[820px]
+
+                h-[80dvh] 
+                md:h-[520px]
+                
+                max-h-[85dvh] 
+                md:max-h-[520px]
+
+                bg-white 
+                shadow-lg 
+                rounded-lg 
+                overflow-hidden 
+                flex
+              "
+            >
               <InviteCard />
             </div>
           </div>
@@ -188,24 +238,47 @@ const InviteSection: React.FC = () => {
           </div>
 
           {/* SEAL BUTTON */}
-          <button
-            ref={sealRef}
-            type="button"
-            onClick={handleSealClick}
-            className="absolute z-[35] left-1/2 top-[68%] -translate-x-1/2 -translate-y-1/2 w-[70px] h-[70px] md:w-[92px] md:h-[92px] rounded-full shadow-md active:scale-[0.98] transition-transform cursor-pointer"
-            aria-label="Open invitation"
-          >
-            <img
-              src="/main-logo.webp"
-              alt="Seal Logo"
-              className="w-full h-full object-contain"
-              draggable={false}
-            />
-          </button>
+          <div className="absolute z-[35] left-1/2 top-[68%] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-2 select-none">
+            <button
+              ref={sealRef}
+              type="button"
+              onClick={handleSealClick}
+              aria-label="Open invitation"
+              className="
+                relative 
+                w-[90px] h-[90px] 
+                md:w-[110px] md:h-[110px] 
+                rounded-full 
+                transition-transform 
+                active:scale-[0.96] 
+                hover:scale-[1.04] 
+                cursor-pointer
+              "
+            >
+              <img
+                src="/assets/stamp.png"
+                alt="Seal Logo"
+                draggable={false}
+                className="w-full h-full object-contain"
+              />
+            </button>
+
+            <span className="text-[11px] md:text-sm tracking-wide text-[#9b6bd3] font-medium opacity-90 animate-fadeInUp">
+              Click to open
+            </span>
+          </div>
 
           {/* FLAP LAYER */}
-          <div ref={flapContainerRef} className="absolute inset-0 z-30 pointer-events-none">
-            <EnvelopeSVG part="flap" flapRef={flapRef} seamRef={seamRef} className="w-full h-full" />
+          <div
+            ref={flapContainerRef}
+            className="absolute inset-0 z-30 pointer-events-none"
+          >
+            <EnvelopeSVG
+              part="flap"
+              flapRef={flapRef}
+              seamRef={seamRef}
+              className="w-full h-full"
+            />
           </div>
         </div>
       </div>

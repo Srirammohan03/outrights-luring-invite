@@ -26,7 +26,7 @@ const FlippingCard = memo(function FlippingCard({
           "border border-border/40 bg-gradient-to-b from-white/5 to-white/2",
           "shadow-xl transition-transform duration-700 [transform-style:preserve-3d]",
           "group-hover:[transform:rotateY(180deg)]",
-          className
+          className,
         )}
       >
         {/* Front */}
@@ -51,8 +51,7 @@ const services = [
     shortDesc: "Cinematic AI-powered love stories",
     fullDesc:
       "Bring your love story to life with cinematic AI-powered videos featuring 3D animations, emotional storytelling, and modern visual effects.",
-    image:
-      "/images/AI.jpeg",
+    image: "/images/AI.jpeg",
     link: "/collections/3d-ai-video",
   },
   {

@@ -1,33 +1,37 @@
-import Header from '@/components/layout/Header';
-import Footer from '@/components/layout/Footer';
-import FloatingWhatsApp from '@/components/layout/FloatingWhatsApp';
-import PageHero from '@/components/shared/PageHero';
-import { motion } from 'framer-motion';
-import { Heart, Award, Users, Sparkles } from 'lucide-react';
-import StatsCounter from '@/components/home/StatsCounter';
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
+import FloatingWhatsApp from "@/components/layout/FloatingWhatsApp";
+import PageHero from "@/components/shared/PageHero";
+import { motion } from "framer-motion";
+import { Heart, Award, Users, Sparkles, Quote } from "lucide-react";
+import StatsCounter from "@/components/home/StatsCounter";
 import { WorkProcessTimeline } from "@/components/about/work-process-timeline";
-import ProcessScrollSection from '@/components/home/ProcessScrollSection';
+import { ProfileCard } from "@/components/ui/profile-card";
 
 const values = [
   {
     icon: Heart,
-    title: 'Passion for Excellence',
-    description: 'Every invitation is crafted with love and attention to detail, ensuring your special moments are truly unforgettable.',
-  },
-  {
-    icon: Award,
-    title: 'Creative Innovation',
-    description: 'We blend traditional aesthetics with cutting-edge technology to create invitations that stand out.',
-  },
-  {
-    icon: Users,
-    title: 'Client-Centric Approach',
-    description: 'Your vision is our priority. We work closely with you to bring your dream invitation to life.',
+    title: "Passion-Driven Craftsmanship",
+    description:
+      "We pour love and dedication into every detail, turning invitations into heartfelt keepsakes.",
   },
   {
     icon: Sparkles,
-    title: 'Quality Commitment',
-    description: 'From design to delivery, we maintain the highest standards to ensure your complete satisfaction.',
+    title: "Innovative Elegance",
+    description:
+      "Blending cutting-edge AI technology with timeless design to create truly unique experiences.",
+  },
+  {
+    icon: Users,
+    title: "Personalized Collaboration",
+    description:
+      "Your story is at the center — we listen, understand, and bring your vision to life.",
+  },
+  {
+    icon: Award,
+    title: "Excellence Without Compromise",
+    description:
+      "Unwavering commitment to quality, from concept to final delivery.",
   },
 ];
 
@@ -36,90 +40,128 @@ export default function About() {
     <div className="min-h-screen bg-background">
       <Header />
       <main>
-        <PageHero 
-          title="About Us" 
-          subtitle="Where dreams meet innovation, and every occasion becomes a cherished memory"
+        <PageHero
+          title="About Us"
+          subtitle="Transforming celebrations with innovative digital invitations that capture emotion, elegance, and joy"
           backgroundImage="https://images.unsplash.com/photo-1519741497674-611481863552?w=1920&q=80"
         />
-        
-        {/* Story Section */}
-        <section className="section-padding">
-          <div className="container-custom max-w-4xl px-4">
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }} 
-              whileInView={{ opacity: 1, y: 0 }} 
-              viewport={{ once: true }} 
-              className="text-center mb-12"
+
+        {/* Elegant Intro with Butterfly Accent */}
+        <section className="py-10 bg-gradient-to-b from-background to-muted/30">
+          <div className="container-custom max-w-5xl px-4 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.9 }}
             >
-              <h2 className="font-heading text-3xl md:text-4xl text-foreground mb-6">Our Story</h2>
-            </motion.div>
-            
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }} 
-              whileInView={{ opacity: 1, y: 0 }} 
-              viewport={{ once: true }} 
-              className="prose prose-lg mx-auto text-muted-foreground space-y-6"
-            >
-              <p className="text-lg md:text-xl leading-relaxed">
-                Welcome to <span className="text-primary font-semibold">Outright's Luring Invite</span>, where dreams meet innovation, and every occasion becomes a cherished memory.
-              </p>
-              <p className="leading-relaxed text-base md:text-lg">
-                Founded under the visionary leadership of our Director, <span className="text-foreground font-medium">Ms. Gurleen Kaur</span>, Outright's Luring Invite is more than just a digital invitation service — it's a reflection of passion, creativity, and a commitment to making your special moments truly unforgettable.
-              </p>
-              <p className="leading-relaxed text-base md:text-lg">
-                Driven by Gurleen's personal dedication to infuse every event with warmth and personalized touch, Outright's Luring Invite embodies a mission to redefine the art of celebration. We believe that every invitation should tell a story, capture emotions, and set the perfect tone for your special day.
-              </p>
-              <p className="leading-relaxed text-base md:text-lg">
-                From AI-powered video invitations to elegant digital designs, we combine cutting-edge technology with artistic excellence to deliver invitations that leave a lasting impression.
+              <p className="text-xl md:text-2xl text-foreground/80 leading-relaxed max-w-4xl mx-auto">
+                At{" "}
+                <span className="font-semibold text-primary">
+                  Outright's Luring Invite
+                </span>
+                , we believe every celebration begins with an invitation that
+                sets the perfect tone — one that reflects your unique story and
+                leaves a lasting impression.
               </p>
             </motion.div>
           </div>
         </section>
 
-        {/* Stats */}
-        <StatsCounter />
-
-        {/* Values */}
-        <section className="section-padding bg-muted/30">
-          <div className="container-custom px-4">
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }} 
-              whileInView={{ opacity: 1, y: 0 }} 
-              viewport={{ once: true }} 
-              className="text-center mb-12"
+        <section className="py-10 bg-muted/20">
+          <div className="container-custom max-w-7xl px-4">
+            <ProfileCard
+              name="Ms. Gurleen Kaur"
+              title="Founder & Creative Director"
+              imageUrl="/images/gurleen.png"
+              linkedinUrl="#"
             >
-              <h2 className="font-heading text-3xl md:text-4xl text-foreground mb-4">Our Values</h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto text-sm md:text-base">
-                The principles that guide everything we do
+              {/* Description paragraphs */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+                className="space-y-5 text-muted-foreground text-base md:text-lg leading-relaxed"
+              >
+                <p>
+                  Guided by Ms. Gurleen Kaur's visionary leadership, Outright's
+                  Luring Invite has redefined digital celebrations with passion
+                  and innovation.
+                </p>
+
+                <p>
+                  Her deep commitment to personalized storytelling and flawless
+                  execution ensures every invitation is a work of art that
+                  perfectly reflects your occasion.
+                </p>
+
+                <p>
+                  From AI-enhanced video invitations to bespoke designs,
+                  Gurleen's creative direction continues to inspire joy and
+                  connection for clients worldwide.
+                </p>
+              </motion.div>
+            </ProfileCard>
+          </div>
+        </section>
+
+        {/* Our Values - Modern Cards with Gradient Accents */}
+        <section className="py-10 bg-muted/20">
+          <div className="container-custom px-4">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-16"
+            >
+              <h2 className="text-4xl md:text-5xl font-bold text-primary mb-4">
+                Our Core Values
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                The foundation of everything we create
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {values.map((value, index) => {
-                const IconComponent = value.icon;
+                const Icon = value.icon;
                 return (
                   <motion.div
                     key={value.title}
-                    initial={{ opacity: 0, y: 30 }}
+                    initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
-                    className="bg-card border border-border rounded-2xl p-6 text-center hover:border-primary transition-colors"
+                    transition={{ delay: index * 0.15, duration: 0.7 }}
+                    className="group relative bg-card rounded-3xl p-8 overflow-hidden border border-transparent hover:border-primary/40 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2"
                   >
-                    <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                      <IconComponent className="w-7 h-7 text-primary" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                    <div className="relative z-10 text-center space-y-6">
+                      <div className="w-20 h-20 mx-auto rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300">
+                        <Icon className="w-10 h-10 text-primary" />
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-semibold  text-foreground mb-3 group-hover:text-primary transition-colors">
+                          {value.title}
+                        </h3>
+                        <p className="text-muted-foreground leading-relaxed">
+                          {value.description}
+                        </p>
+                      </div>
                     </div>
-                    <p className="font-semibold text-lg text-foreground mb-2">{value.title}</p>
-                    <p className="text-muted-foreground text-sm">{value.description}</p>
                   </motion.div>
                 );
               })}
             </div>
           </div>
         </section>
-        {/* Work Process Timeline */}
+
+        {/* Stats */}
+        <StatsCounter />
+
+        {/* Work Process */}
         <WorkProcessTimeline />
-         {/* <ProcessScrollSection /> */}
       </main>
       <Footer />
       <FloatingWhatsApp />

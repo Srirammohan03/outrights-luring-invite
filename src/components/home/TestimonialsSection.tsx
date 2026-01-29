@@ -10,7 +10,7 @@ export default function TestimonialsSection() {
   const circularData: Testimonial[] = testimonials.map((t) => ({
     quote: t.text,
     name: t.name,
-    designation: `${t.location} • ${t.occasion}`,
+    // designation: `${t.location} • ${t.occasion}`,
     src: t.image,
   }));
 
@@ -40,7 +40,7 @@ export default function TestimonialsSection() {
               autoplay={true}
               colors={{
                 name: "hsl(var(--foreground))",
-                designation: "hsl(var(--muted-foreground))",
+                // designation: "hsl(var(--muted-foreground))",
                 testimony: "hsl(var(--foreground))",
                 arrowBackground: "hsl(var(--primary))",
                 arrowForeground: "hsl(var(--primary-foreground))",
@@ -48,7 +48,7 @@ export default function TestimonialsSection() {
               }}
               fontSizes={{
                 name: "28px",
-                designation: "18px",
+                // designation: "18px",
                 quote: "18px",
               }}
             />
