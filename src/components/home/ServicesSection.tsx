@@ -19,23 +19,42 @@ const FlippingCard = memo(function FlippingCard({
   className,
 }: FlippingCardProps) {
   return (
-    <div className="relative w-[300px] sm:w-[320px] lg:w-[340px] perspective-[1200px] cursor-pointer group">
+    <div className="relative w-[300px] sm:w-[320px] lg:w-[340px] perspective-[1200px] group">
       <div
         className={cn(
           "relative h-[360px] sm:h-[380px] lg:h-[400px] w-full rounded-2xl",
           "border border-border/40 bg-gradient-to-b from-white/5 to-white/2",
-          "shadow-xl transition-transform duration-700 [transform-style:preserve-3d]",
-          "group-hover:[transform:rotateY(180deg)]",
+          "shadow-xl transition-transform duration-700",
+          "[transform-style:preserve-3d]",
+          // ✅ hover ONLY on desktop
+          "md:group-hover:[transform:rotateY(180deg)]",
           className,
         )}
       >
-        {/* Front */}
-        <div className="absolute inset-0 rounded-2xl overflow-hidden [backface-visibility:hidden]">
+        {/* FRONT */}
+        <div
+          className="
+            absolute inset-0 rounded-2xl overflow-hidden
+            [backface-visibility:hidden]
+            [transform:rotateY(0deg)]
+            [transform-style:preserve-3d]
+            will-change-transform
+          "
+        >
           {frontContent}
         </div>
 
-        {/* Back */}
-        <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#A86DCD]/10 to-[#A86DCD]/5 [transform:rotateY(180deg)] [backface-visibility:hidden]">
+        {/* BACK */}
+        <div
+          className="
+            absolute inset-0 rounded-2xl
+            bg-gradient-to-br from-[#A86DCD]/10 to-[#A86DCD]/5
+            [backface-visibility:hidden]
+            [transform:rotateY(180deg)]
+            [transform-style:preserve-3d]
+            will-change-transform
+          "
+        >
           <div className="flex h-full w-full flex-col items-center justify-center p-6 sm:p-7 text-center">
             {backContent}
           </div>
@@ -44,6 +63,7 @@ const FlippingCard = memo(function FlippingCard({
     </div>
   );
 });
+
 const services = [
   {
     id: "ai-video",
@@ -149,14 +169,14 @@ export default function ServicesPage() {
   return (
     <main className="bg-background">
       {/* HERO */}
-      <section className="relative overflow-hidden py-20 bg-gradient-to-b from-background to-muted/30">
+      <section className="relative overflow-hidden py-10 bg-gradient-to-b from-background to-muted/30">
         {/* LEFT BUTTERFLY */}
         <motion.img
           src="/assets/Butterflies-GIF-left.gif"
           alt="butterfly"
           animate={butterflyControls}
           initial={{ opacity: 0.9 }}
-          className="pointer-events-none absolute left-[6%] sm:left-[10%] lg:left-[14%] top-[42%] -translate-y-1/2 w-32 sm:w-40 lg:w-48"
+          className="pointer-events-none absolute left-[6%] sm:left-[10%] lg:left-[14%] top-[42%] -translate-y-1/2 w-32 sm:w-40 lg:w-72"
         />
 
         {/* RIGHT BUTTERFLY */}
@@ -165,7 +185,7 @@ export default function ServicesPage() {
           alt="butterfly"
           animate={butterflyControls}
           initial={{ opacity: 0.9 }}
-          className="pointer-events-none absolute right-[6%] sm:right-[10%] lg:right-[14%] top-[42%] -translate-y-1/2 w-32 sm:w-40 lg:w-48"
+          className="pointer-events-none absolute right-[6%] sm:right-[10%] lg:right-[14%] top-[42%] -translate-y-1/2 w-32 sm:w-40 lg:w-72"
         />
 
         {/* HERO CONTENT */}

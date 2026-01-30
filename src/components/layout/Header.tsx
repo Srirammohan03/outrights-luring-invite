@@ -25,16 +25,26 @@ const SOCIAL_LINKS = {
   email: "mailto:hello@outrightsluringinvite.com",
   whatsapp: WHATSAPP_LINK,
 };
+const WEB_APP_URL =
+  "https://script.google.com/macros/s/AKfycbxftbJlAIEArdZStPvqh_kq_duTgg5oDDrkcA5AB6k0VQTBg2f7Jk6QcSIbR-dvV_g6hQ/exec";
 
 const Header: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const [isSubmittingQuote, setIsSubmittingQuote] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
 
   const dropdownRef = useRef<HTMLDivElement>(null);
   const mobileMenuRef = useRef<HTMLDivElement>(null); // ✅ NEW
 
   const [isQuoteOpen, setIsQuoteOpen] = useState(false);
-
+  const [quoteData, setQuoteData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    service: "",
+    message: "",
+  });
   const navItems = [
     { label: "WEDDING", slug: "wedding-invites" },
     { label: "BIRTHDAY", slug: "birthday" },
@@ -42,7 +52,44 @@ const Header: React.FC = () => {
     { label: "HOUSEWARMING", slug: "house-warming" },
     { label: "PDF INVITES", slug: "pdf-invites" },
   ];
+  const submitQuote = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmittingQuote(true);
 
+    const payload = {
+      productTitle: "Quote Request",
+      collectionSlug: quoteData.service,
+      name: quoteData.name,
+      phone: quoteData.phone,
+      email: quoteData.email,
+      notes: quoteData.message,
+      source: "Header Quote Form",
+      pageUrl: window.location.href,
+    };
+
+    try {
+      await fetch(WEB_APP_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      setQuoteData({
+        name: "",
+        email: "",
+        phone: "",
+        service: "",
+        message: "",
+      });
+
+      setIsQuoteOpen(false);
+    } finally {
+      setIsSubmittingQuote(false);
+    }
+  };
   // Text carousel
   useEffect(() => {
     const timer = setInterval(() => {
@@ -379,25 +426,26 @@ const Header: React.FC = () => {
                 Fill the details and we’ll contact you shortly.
               </p>
 
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  alert("Quote request submitted!");
-                  setIsQuoteOpen(false);
-                }}
-                className="space-y-3"
-              >
+              <form onSubmit={submitQuote} className="space-y-3">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <input
                     required
-                    type="text"
                     placeholder="Name"
+                    value={quoteData.name}
+                    onChange={(e) =>
+                      setQuoteData({ ...quoteData, name: e.target.value })
+                    }
                     className="w-full border rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-[#A86DCD]"
                   />
+
                   <input
                     required
                     type="email"
                     placeholder="Email"
+                    value={quoteData.email}
+                    onChange={(e) =>
+                      setQuoteData({ ...quoteData, email: e.target.value })
+                    }
                     className="w-full border rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-[#A86DCD]"
                   />
                 </div>
@@ -407,101 +455,53 @@ const Header: React.FC = () => {
                     required
                     type="tel"
                     placeholder="Phone"
+                    value={quoteData.phone}
+                    onChange={(e) =>
+                      setQuoteData({ ...quoteData, phone: e.target.value })
+                    }
                     className="w-full border rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-[#A86DCD]"
                   />
-                  <input
-                    required
-                    type="text"
-                    placeholder="Subject"
-                    className="w-full border rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-[#A86DCD]"
-                  />
-                </div>
 
-                <select
-                  required
-                  className="w-full border rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-[#A86DCD]"
-                >
-                  <option value="">Which service?</option>
-                  <option value="Wedding Invites">Wedding Invites</option>
-                  <option value="Birthday Invites">Birthday Invites</option>
-                  <option value="Anniversary Invites">
-                    Anniversary Invites
-                  </option>
-                  <option value="Housewarming Invites">
-                    Housewarming Invites
-                  </option>
-                  <option value="Custom Magnet">Custom Magnet</option>
-                  <option value="Other">Other</option>
-                </select>
+                  <select
+                    required
+                    value={quoteData.service}
+                    onChange={(e) =>
+                      setQuoteData({ ...quoteData, service: e.target.value })
+                    }
+                    className="w-full border rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-[#A86DCD]"
+                  >
+                    <option value="">Which service?</option>
+                    <option value="Wedding Invites">Wedding Invites</option>
+                    <option value="Birthday Invites">Birthday Invites</option>
+                    <option value="Anniversary Invites">
+                      Anniversary Invites
+                    </option>
+                    <option value="Housewarming Invites">
+                      Housewarming Invites
+                    </option>
+                    <option value="Custom Magnet">Custom Magnet</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
 
                 <textarea
                   required
                   rows={4}
                   placeholder="Message"
+                  value={quoteData.message}
+                  onChange={(e) =>
+                    setQuoteData({ ...quoteData, message: e.target.value })
+                  }
                   className="w-full border rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-[#A86DCD]"
                 />
 
                 <button
                   type="submit"
-                  className="w-full bg-[#A86DCD] text-white py-3 rounded-xl font-semibold hover:opacity-90 transition"
+                  disabled={isSubmittingQuote}
+                  className="w-full bg-[#A86DCD] text-white py-3 rounded-xl font-semibold hover:opacity-90 transition disabled:opacity-60"
                 >
-                  Submit
+                  {isSubmittingQuote ? "Submitting..." : "Submit"}
                 </button>
-
-                {/* ✅ ALL SOCIAL ICONS INSIDE POPUP (Desktop + Mobile) */}
-                <div className="flex items-center justify-center gap-5 pt-3 text-gray-700">
-                  <a
-                    href={SOCIAL_LINKS.whatsapp}
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label="WhatsApp"
-                  >
-                    <i className="fab fa-whatsapp text-2xl text-green-500" />
-                  </a>
-                  <a
-                    href={SOCIAL_LINKS.facebook}
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label="Facebook"
-                  >
-                    <i className="fab fa-facebook-f text-2xl" />
-                  </a>
-                  <a
-                    href={SOCIAL_LINKS.instagram}
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label="Instagram"
-                  >
-                    <i className="fab fa-instagram text-2xl" />
-                  </a>
-                  <a
-                    href={SOCIAL_LINKS.pinterest}
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label="Pinterest"
-                  >
-                    <i className="fab fa-pinterest-p text-2xl" />
-                  </a>
-                  <a
-                    href={SOCIAL_LINKS.youtube}
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label="YouTube"
-                  >
-                    <i className="fab fa-youtube text-2xl" />
-                  </a>
-                  <a
-                    href={SOCIAL_LINKS.linkedin}
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label="LinkedIn"
-                  >
-                    <i className="fab fa-linkedin-in text-2xl" />
-                  </a>
-                  <a href={SOCIAL_LINKS.email} aria-label="Email">
-                    <Mail className="w-6 h-6" />
-                  </a>
-                </div>
               </form>
             </motion.div>
           </motion.div>
