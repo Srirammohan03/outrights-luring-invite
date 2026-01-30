@@ -14,7 +14,7 @@ import VideoPreview, { VideoPlatform } from "@/components/shared/VideoPreview";
 import PdfPreview from "@/components/shared/PdfPreview";
 
 const WEB_APP_URL =
-  "https://script.google.com/macros/s/AKfycbxftbJlAIEArdZStPvqh_kq_duTgg5oDDrkcA5AB6k0VQTBg2f7Jk6QcSIbR-dvV_g6hQ/exec";
+  "https://script.google.com/macros/s/AKfycbzAzqzG5hYLKg7oYEmWQsrIos4bLL2xUwZMPzUd5t8CURtd37mHSMld6V17XqhJmXs9/exec";
 export default function ProductDetail() {
   const { slug } = useParams();
   const product = getProductBySlug(slug || "");

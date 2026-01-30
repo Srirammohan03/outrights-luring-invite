@@ -26,7 +26,7 @@ const SOCIAL_LINKS = {
   whatsapp: WHATSAPP_LINK,
 };
 const WEB_APP_URL =
-  "https://script.google.com/macros/s/AKfycbxftbJlAIEArdZStPvqh_kq_duTgg5oDDrkcA5AB6k0VQTBg2f7Jk6QcSIbR-dvV_g6hQ/exec";
+  "https://script.google.com/macros/s/AKfycbzAzqzG5hYLKg7oYEmWQsrIos4bLL2xUwZMPzUd5t8CURtd37mHSMld6V17XqhJmXs9/exec";
 
 const Header: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
