@@ -34,9 +34,7 @@ const InviteSection: React.FC = () => {
   const isMobile = useIsMobile();
 
   const handleSealClick = () => {
-    if (timelineRef.current) {
-      timelineRef.current.play();
-    }
+    timelineRef.current?.play();
   };
 
   useLayoutEffect(() => {
@@ -88,12 +86,13 @@ const InviteSection: React.FC = () => {
         paused: true,
         scrollTrigger: {
           trigger: section,
-          start: "center top",
-          end: "+=100",
+          start: "top 65%", // 🔥 when section enters viewport
+          end: "+=60",
           pin: true,
-          scrub: false,
           once: true,
-          toggleActions: "play none none none",
+          onEnter: () => {
+            tl.play(); // 🔥 auto open
+          },
         },
       });
 
@@ -179,10 +178,21 @@ const InviteSection: React.FC = () => {
   return (
     <section
       ref={sectionRef}
-      // Fixed: added max-w-[100vw] and overflow-hidden to strict prevent scrollbars
-      className="relative pb-10 w-full max-w-[100vw] min-h-screen bg-cover bg-center bg-no-repeat overflow-hidden flex items-center justify-center"
+      className="
+    relative
+    w-full
+    overflow-hidden
+    h-screen
+    bg-cover
+    bg-center
+    bg-no-repeat
+    flex
+    items-center
+    justify-center
+  "
       style={{
-        backgroundImage: "url('/images/bg3.png')",
+        backgroundImage: "url('/images/bg3.png')"
+        ,
       }}
     >
       <div className="relative w-full h-full flex items-center justify-center">

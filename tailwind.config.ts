@@ -40,9 +40,10 @@ export default {
     },
     extend: {
       fontFamily: {
-        heading: ["SnellRoundhand Script", "sans-serif"],
-        subheading: ["SnellRoundhand Script", "sans-serif"],
-        body: ["Ysabeau", "sans-serif"],
+        // Use nested quotes for names with spaces
+        heading: ["'SnellRoundhand Script'", "cursive"],
+        subheading: ["'SnellRoundhand Script'", "cursive"],
+        body: ["'Ysabeau'", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",

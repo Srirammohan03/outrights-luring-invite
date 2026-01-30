@@ -6,14 +6,14 @@ import { motion } from "framer-motion";
 
 export default function VideoHeroSection() {
   return (
-    <section className="relative w-full h-[75vh] overflow-hidden ">
+    <section className="relative w-full h-[68vh]  overflow-hidden ">
       {/* Desktop video */}
       <video
         autoPlay
         muted
         loop
         playsInline
-        className="absolute inset-0 w-full h-full object-contain hidden md:block pointer-events-none "
+        className="absolute inset-0 w-full h-full object-cover hidden md:block pointer-events-none "
         src="/assets/Webpage-Video.mp4"
       />
 
@@ -23,7 +23,7 @@ export default function VideoHeroSection() {
         muted
         loop
         playsInline
-        className="absolute inset-0 w-full h-full object-contain md:hidden pointer-events-none"
+        className="absolute inset-0 w-full h-full object-cover md:hidden pointer-events-none"
         src="/assets/Webpage-Vertical-video.mp4"
       />
 
