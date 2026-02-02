@@ -3,7 +3,9 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import FloatingWhatsApp from "@/components/layout/FloatingWhatsApp";
 import PageHero from "@/components/shared/PageHero";
-import CollectionFilters, { FilterState } from "@/components/shared/CollectionFilters";
+import CollectionFilters, {
+  FilterState,
+} from "@/components/shared/CollectionFilters";
 import { motion } from "framer-motion";
 import { useParams, Link } from "react-router-dom";
 import { getCollectionBySlug, getProductsByCollection } from "@/data/products";
@@ -30,16 +32,39 @@ export default function CollectionDetail() {
 
   const filteredProducts = useMemo(() => {
     let result = allProducts.filter((p) => {
-      if (filters.style.length > 0 && !filters.style.some((s) => p.styles.includes(s as any))) return false;
-      if (filters.language.length > 0 && !filters.language.some((l) => p.languages.includes(l as any))) return false;
-      if (filters.religion.length > 0 && !filters.religion.some((r) => p.religion?.includes(r as any))) return false;
-      if (filters.region.length > 0 && !filters.region.some((reg) => p.region?.includes(reg as any))) return false;
-      if (filters.subOccasion && !p.subOccasion?.includes(filters.subOccasion)) return false;
+      if (
+        filters.style.length > 0 &&
+        !filters.style.some((s) => p.styles.includes(s as any))
+      )
+        return false;
+      if (
+        filters.language.length > 0 &&
+        !filters.language.some((l) => p.languages.includes(l as any))
+      )
+        return false;
+      if (
+        filters.religion.length > 0 &&
+        !filters.religion.some((r) => p.religion?.includes(r as any))
+      )
+        return false;
+      if (
+        filters.region.length > 0 &&
+        !filters.region.some((reg) => p.region?.includes(reg as any))
+      )
+        return false;
+      if (filters.subOccasion && !p.subOccasion?.includes(filters.subOccasion))
+        return false;
 
       if (filters.budget) {
-        if (filters.budget === "under-1000" && p.priceFrom >= 1000) return false;
-        if (filters.budget === "1000-3000" && (p.priceFrom < 1000 || p.priceFrom > 3000)) return false;
-        if (filters.budget === "above-3000" && p.priceFrom <= 3000) return false;
+        if (filters.budget === "under-1000" && p.priceFrom >= 1000)
+          return false;
+        if (
+          filters.budget === "1000-3000" &&
+          (p.priceFrom < 1000 || p.priceFrom > 3000)
+        )
+          return false;
+        if (filters.budget === "above-3000" && p.priceFrom <= 3000)
+          return false;
       }
 
       return true;
@@ -47,7 +72,9 @@ export default function CollectionDetail() {
 
     switch (filters.sortBy) {
       case "newest":
-        result = result.filter((p) => p.isNew).concat(result.filter((p) => !p.isNew));
+        result = result
+          .filter((p) => p.isNew)
+          .concat(result.filter((p) => !p.isNew));
         break;
       case "price-low":
         result = result.sort((a, b) => a.priceFrom - b.priceFrom);
@@ -57,7 +84,9 @@ export default function CollectionDetail() {
         break;
       case "best-selling":
       default:
-        result = result.filter((p) => p.bestSeller).concat(result.filter((p) => !p.bestSeller));
+        result = result
+          .filter((p) => p.bestSeller)
+          .concat(result.filter((p) => !p.bestSeller));
         break;
     }
 
@@ -70,7 +99,9 @@ export default function CollectionDetail() {
         <Header />
         <main className="section-padding">
           <div className="container-custom text-center px-4">
-            <h1 className="font-heading text-3xl text-foreground mb-4">Collection not found</h1>
+            <h1 className="font-heading text-3xl text-foreground mb-4">
+              Collection not found
+            </h1>
             <Link to="/collections">
               <Button variant="outline">Back to Collections</Button>
             </Link>
@@ -85,9 +116,13 @@ export default function CollectionDetail() {
     <div className="min-h-screen bg-background">
       <Header />
       <main>
-        <PageHero title={collection.title} subtitle={collection.description} backgroundImage={collection.thumbnail} />
+        <PageHero
+          title={collection.title}
+          subtitle={collection.description}
+          backgroundImage={collection.thumbnail}
+        />
 
-        <div className="container-custom section-padding px-4">
+        <div className="container-custom py-5 px-4">
           <Link
             to="/collections"
             className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary mb-6 text-sm md:text-base"
@@ -96,7 +131,11 @@ export default function CollectionDetail() {
           </Link>
 
           {/* Filters */}
-          <CollectionFilters onFilterChange={setFilters} currentFilters={filters} collectionSlug={slug || ""} />
+          <CollectionFilters
+            onFilterChange={setFilters}
+            currentFilters={filters}
+            collectionSlug={slug || ""}
+          />
 
           {/* Products grid */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
@@ -110,7 +149,10 @@ export default function CollectionDetail() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.05 }}
                 >
-                  <Link to={`/product/${product.slug}`} className="group block card-luxury rounded-xl overflow-hidden">
+                  <Link
+                    to={`/product/${product.slug}`}
+                    className="group block card-luxury rounded-xl overflow-hidden"
+                  >
                     <div className="aspect-[4/5] relative bg-muted overflow-hidden">
                       {/* ✅ If product has video → show platform preview */}
                       {hasVideo ? (
@@ -161,7 +203,9 @@ export default function CollectionDetail() {
 
           {filteredProducts.length === 0 && (
             <div className="text-center py-12">
-              <p className="text-muted-foreground mb-4">No templates match your filters.</p>
+              <p className="text-muted-foreground mb-4">
+                No templates match your filters.
+              </p>
               <Button
                 variant="outline"
                 onClick={() =>
