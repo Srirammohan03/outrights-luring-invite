@@ -74,7 +74,7 @@ export default function About() {
               name="Ms. Gurleen Kaur"
               title="Founder & Creative Director"
               imageUrl="/images/gurleen.png"
-              linkedinUrl="#"
+              linkedinUrl="https://www.linkedin.com/in/gurleen-kaur-bhutani-27500a123/"
             >
               {/* Description paragraphs */}
               <motion.div

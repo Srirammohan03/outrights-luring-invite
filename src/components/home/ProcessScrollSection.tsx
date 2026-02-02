@@ -4,7 +4,6 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-/* ---------------- THEME ---------------- */
 const THEME = "#a86dcd";
 
 export default function ProcessScrollSection() {
@@ -37,7 +36,7 @@ export default function ProcessScrollSection() {
           </p>
         </motion.div>
 
-        {/* Center full-width image on top of background */}
+        {/* IMAGE */}
         <motion.div
           initial={{ opacity: 0, y: 18, scale: 0.98 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
@@ -45,10 +44,20 @@ export default function ProcessScrollSection() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="w-full flex items-center justify-center"
         >
+          {/* Desktop image */}
           <img
-            src="/assets/caterpillar.png" // <-- replace with your image path
-            alt="Process"
-            className="w-full max-w-7xl h-auto "
+            src="/assets/caterpillar.png"
+            alt="Process Desktop"
+            className="hidden md:block w-full max-w-7xl h-auto"
+            loading="lazy"
+            draggable={false}
+          />
+
+          {/* Mobile image */}
+          <img
+            src="/assets/ourprocess-mobile.png"
+            alt="Process Mobile"
+            className="block md:hidden w-full max-w-md h-auto"
             loading="lazy"
             draggable={false}
           />

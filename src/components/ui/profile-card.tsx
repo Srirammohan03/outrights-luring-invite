@@ -1,15 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Github, Twitter, Youtube, Linkedin } from "lucide-react";
+import { Github, Twitter, Youtube, Linkedin, Instagram } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export interface ProfileCardProps {
   name?: string;
   title?: string;
   imageUrl?: string;
-  githubUrl?: string;
-  twitterUrl?: string;
+  instgramUrl?: string;
   youtubeUrl?: string;
   linkedinUrl?: string;
   className?: string;
@@ -20,18 +19,16 @@ export function ProfileCard({
   name = "Ms. Gurleen Kaur",
   title = "Founder & Creative Director",
   imageUrl = "/images/gurleen.png",
-  githubUrl = "#",
-  twitterUrl = "#",
-  youtubeUrl = "#",
-  linkedinUrl = "#",
+  instgramUrl = "https://www.instagram.com/mrs.outright/",
+  linkedinUrl = "https://www.linkedin.com/in/gurleen-kaur-bhutani-27500a123/",
+  youtubeUrl = "https://www.youtube.com/@LuringInvite",
   className,
   children,
 }: ProfileCardProps) {
   const socials = [
-    { icon: Github, url: githubUrl },
-    { icon: Twitter, url: twitterUrl },
-    { icon: Youtube, url: youtubeUrl },
+    { icon: Instagram, url: instgramUrl },
     { icon: Linkedin, url: linkedinUrl },
+    { icon: Youtube, url: youtubeUrl },
   ];
 
   return (
