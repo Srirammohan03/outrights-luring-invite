@@ -22,7 +22,7 @@ const SOCIAL_LINKS = {
   pinterest: "https://in.pinterest.com/luringinvite/",
   youtube: "https://www.youtube.com/channel/UCNM3O5018f7nqLKFn3UIH8w",
   linkedin: "https://in.linkedin.com/in/luring-invite-94a35928b",
-  email: "mailto:hello@outrightsluringinvite.com",
+  email: "mailto:outrightluringinvite@gmail.com",
   whatsapp: WHATSAPP_LINK,
 };
 const WEB_APP_URL =
@@ -156,7 +156,7 @@ const Header: React.FC = () => {
               >
                 <Mail className="w-5 h-5" />
                 <span className="hidden sm:inline underline whitespace-nowrap">
-                  hello@outrightsluringinvite.com
+                  outrightluringinvite@gmail.com
                 </span>
               </a>
             </div>

@@ -8,43 +8,47 @@ import { AuroraBackground } from "./ui/aurora-background";
 ========================================================= */
 const INSTAGRAM_REELS = [
   {
-    url: "https://www.instagram.com/reel/DTczXtADyYR/",
+    url: "https://www.instagram.com/reel/DSZ3zbWD8JD/?igsh=Y2hrbGwwOXB0ZmY4",
     label: "Behind the Scenes",
   },
   {
-    url: "https://www.instagram.com/reel/DTHoKoYD5XH/",
+    url: "https://www.instagram.com/reel/DSR_bwIk2_c/?igsh=bGN4emF0anFnM2xv",
     label: "Design Process",
   },
   {
-    url: "https://www.instagram.com/reel/DS2PMXCEsWP/",
+    url: "https://www.instagram.com/reel/DQ9YeGqgFdC/?igsh=MW40d3Fibml3amx0Yw==",
     label: "New Collection",
   },
   {
-    url: "https://www.instagram.com/reel/DSuZ6l4lDJl/",
+    url: "https://www.instagram.com/reel/DN521i6Ezpm/?igsh=MTIxa2U0bjF6Y3lhYQ==",
     label: "Behind the Scenes",
   },
   {
-    url: "https://www.instagram.com/reel/DSpXFRGDZJ3/",
+    url: "https://www.instagram.com/reel/DNsD93VXunp/?igsh=Mm00eTlvanFveTNl",
     label: "Design Process",
   },
   {
-    url: "https://www.instagram.com/reel/DSmyXvQEppE/",
+    url: "https://www.instagram.com/reel/DNQnGpHTL7p/?igsh=azE5d3JmYWhrMXNv",
     label: "New Collection",
   },
   {
-    url: "https://www.instagram.com/reel/DSkNfXskv0P/",
+    url: "https://www.instagram.com/reel/DM8GNw9zGcP/?igsh=MWgzZzFybWRkanBwYw==",
     label: "Behind the Scenes",
   },
   {
-    url: "https://www.instagram.com/reel/DSZ3zbWD8JD/",
+    url: "https://www.instagram.com/reel/DMvCRY-vXk3/?igsh=aDVpZnhpMHdnY3Fy",
     label: "Design Process",
   },
   {
-    url: "https://www.instagram.com/reel/DSXU-UdCiE_/",
+    url: "https://www.instagram.com/reel/DMspfizTXHE/?igsh=MW1jNHlrZzM1dW5qbA==",
     label: "New Collection",
   },
   {
-    url: "https://www.instagram.com/reel/DSVGtNilRoM/",
+    url: "https://www.instagram.com/reel/DMdH_3DTLmh/?igsh=MWlucXg1ajI0OXFhaA==",
+    label: "Behind the Scenes",
+  },
+  {
+    url: "https://www.instagram.com/reel/DMQRnWnTnbM/?igsh=ejRsNmMwMTBodjZq",
     label: "Behind the Scenes",
   },
 ];
@@ -202,49 +206,39 @@ export default function InstagramReelsHighlights() {
             >
               {reels.map((item, i) => (
                 <div
-                  key={i}
-                  /* ✅ CARD CONTAINER (The "Frame")
-                    - overflow-hidden: This cuts off the footer
-                    - aspect-[9/16]: Keeps the shape of a phone screen
-                    - w-[260px] / w-[300px]: Responsive Widths
-                  */
-                  className="
-                    relative 
-                    shrink-0 
-                    overflow-hidden 
-                    rounded-2xl 
-                    bg-neutral-100
-                    border border-black/5
-                    shadow-sm
-                    
-                    /* Mobile Size */
-                    w-[260px] 
-                    aspect-[9/16]
-
-                    /* Desktop Size */
-                    md:w-[300px]
-                  "
-                >
+  key={i}
+  className="
+    relative
+    shrink-0
+    overflow-hidden
+    rounded-2xl
+    bg-neutral-100
+    border border-black/5
+    shadow-sm
+    w-[260px]
+    aspect-[9/16]
+    md:w-[300px]
+  "
+>
                   <div className="absolute inset-0 w-full h-full">
-                    <iframe
-                      src={item.embed as string}
-                      /* ✅ THE MAGIC FIX 
-                         - h-[120%]: Makes the iframe 20% taller than the card.
-                         - -mt-[0%]: Keeps the top aligned.
-                         The extra 20% height pushes the white footer DOWN and OUT of view 
-                         because the container has overflow-hidden.
-                      */
-                      className="absolute top-0 left-0 w-full h-[120%]"
-                      loading="lazy"
-                      scrolling="no"
-                      allow="encrypted-media; fullscreen"
-                      style={{ border: 0 }}
-                      title={`Instagram Reel ${i}`}
-                    />
-
-                    {/* Optional: Invisible overlay to prevent clicking the 'pause' button if desired, 
-                        but usually better to let users click play/pause. */}
-                  </div>
+    <iframe
+      src={item.embed}
+      className="absolute top-0 left-0 w-full h-[120%]"
+      loading="lazy"
+      scrolling="no"
+      allow="encrypted-media; fullscreen"
+      style={{ border: 0 }}
+      title={`Instagram Reel ${i}`}
+    />
+  </div>
+  <div className="absolute bottom-0 left-0 right-0 h-16 bg-white pointer-events-none" />
+  {/* <style jsx>{`
+    iframe {
+      & ~ div[style*="position: absolute; bottom: 0"] 
+        display: none !important;
+      }
+    }
+  `}</style> */}
                 </div>
               ))}
             </div>

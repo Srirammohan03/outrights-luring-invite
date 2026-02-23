@@ -76,7 +76,7 @@ export default function Footer() {
                   transition={{ duration: 0.8, ease: "easeInOut" }}
                 />
               </Link>
-              <p className="text-muted-foreground text-sm mb-6">
+              <p className="text-white/80 text-sm mb-6">
                 Where dreams meet innovation, and every occasion becomes a
                 cherished memory.
               </p>
@@ -129,7 +129,7 @@ export default function Footer() {
                 <li>
                   <Link
                     to="/"
-                    className="text-muted-foreground hover:text-primary transition-colors"
+                    className="text-white/80 hover:text-primary transition-colors"
                   >
                     Home
                   </Link>
@@ -137,7 +137,7 @@ export default function Footer() {
                 <li>
                   <Link
                     to="/collections"
-                    className="text-muted-foreground hover:text-primary transition-colors"
+                    className="text-white/80 hover:text-primary transition-colors"
                   >
                     Collections
                   </Link>
@@ -145,16 +145,16 @@ export default function Footer() {
                 <li>
                   <Link
                     to="/about"
-                    className="text-muted-foreground hover:text-primary transition-colors"
+                    className="text-white/80 hover:text-primary transition-colors"
                   >
                     About Us
                   </Link>
                 </li>
-                {/* <li><Link to="/process" className="text-muted-foreground hover:text-primary transition-colors">How It Works</Link></li> */}
+                {/* <li><Link to="/process" className="text-white/80 hover:text-primary transition-colors">How It Works</Link></li> */}
                 <li>
                   <Link
                     to="/contact"
-                    className="text-muted-foreground hover:text-primary transition-colors"
+                    className="text-white/80 hover:text-primary transition-colors"
                   >
                     Contact
                   </Link>
@@ -162,7 +162,7 @@ export default function Footer() {
                 <li>
                   <Link
                     to="/faq"
-                    className="text-muted-foreground hover:text-primary transition-colors"
+                    className="text-white/80 hover:text-primary transition-colors"
                   >
                     FAQ
                   </Link>
@@ -178,7 +178,7 @@ export default function Footer() {
                   <li key={collection.id}>
                     <Link
                       to={`/collections/${collection.slug}`}
-                      className="text-muted-foreground hover:text-primary transition-colors"
+                      className="text-white/80 hover:text-primary transition-colors"
                     >
                       {collection.title}
                     </Link>
@@ -194,21 +194,21 @@ export default function Footer() {
                 <li className="flex items-start gap-3">
                   <Phone className="w-5 h-5 text-primary mt-0.5" />
                   <div>
-                    <p className="text-muted-foreground">+91 9121080131</p>
-                    <p className="text-xs text-muted-foreground/70">
+                    <p className="text-white/80">+91 9121080131</p>
+                    <p className="text-xs text-white/80/70">
                       Mon-Sat, 10AM-7PM
                     </p>
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
                   <Mail className="w-5 h-5 text-primary mt-0.5" />
-                  <p className="text-muted-foreground">
-                    hello@outrightsluringinvite.com
+                  <p className="text-white/80">
+                    outrightluringinvite@gmail.com
                   </p>
                 </li>
                 <li className="flex items-start gap-3">
                   <MapPin className="w-5 h-5 text-primary mt-0.5" />
-                  <p className="text-muted-foreground">
+                  <p className="text-white/80">
                     Hyderabad, Telangana, India
                   </p>
                 </li>
@@ -217,21 +217,21 @@ export default function Footer() {
           </div>
 
           {/* Bottom */}
-          <div className="border-t border-muted-foreground/20 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-muted-foreground">
+          <div className="border-t border-white/80/20 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-sm text-white/80">
               © {new Date().getFullYear()} Outright's Luring Invite. All rights
               reserved.
             </p>
             <div className="flex gap-6 text-sm">
               <Link
                 to="/privacy"
-                className="text-muted-foreground hover:text-primary transition-colors"
+                className="text-white/80 hover:text-primary transition-colors"
               >
                 Privacy Policy
               </Link>
               <Link
                 to="/terms"
-                className="text-muted-foreground hover:text-primary transition-colors"
+                className="text-white/80 hover:text-primary transition-colors"
               >
                 Terms of Service
               </Link>

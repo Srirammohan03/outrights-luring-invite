@@ -23,6 +23,7 @@ import MouseButterflyTrail from "@/components/ui/MouseButterflyTrail";
 import InviteSection from "@/components/InviteSection";
 import InstagramReelsHighlights from "@/components/InstagramReelsHighlights";
 import VideoHeroSection from "@/components/VideoHero";
+import LuxuryCTASection from "@/components/home/LuxuryCTASection";
 
 const Index = () => {
   // ✅ FIX: avoid window.open collision, define state
@@ -46,6 +47,7 @@ const Index = () => {
 
       <main className="relative z-10">
         <VideoHeroSection />
+        {/* <LuxuryCTASection />  */}
         {/* <ScrollExpandMedia
           mediaType="video"
           mediaSrc={

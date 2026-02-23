@@ -3,6 +3,8 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button"; // ✅ FIXED IMPORT
 
 const THEME = "#a86dcd";
 
@@ -17,6 +19,7 @@ export default function ProcessScrollSection() {
       }}
     >
       <div className="relative z-10 w-full px-4 flex flex-col items-center">
+
         {/* HEADER */}
         <motion.div
           initial={{ opacity: 0, y: 18 }}
@@ -31,6 +34,7 @@ export default function ProcessScrollSection() {
               Process
             </span>
           </h2>
+
           <p className="mt-2 text-muted-foreground text-sm md:text-base">
             Crafting your story, one layer at a time
           </p>
@@ -62,6 +66,22 @@ export default function ProcessScrollSection() {
             draggable={false}
           />
         </motion.div>
+
+        {/* BUTTON BELOW IMAGE */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="mt-8"
+        >
+          <Link to="/about">
+            <Button className="px-10 py-6 text-lg bg-[#A86DCD] hover:bg-[#A86DCD]/90 shadow-xl">
+              Know More About Us
+            </Button>
+          </Link>
+        </motion.div>
+
       </div>
     </section>
   );

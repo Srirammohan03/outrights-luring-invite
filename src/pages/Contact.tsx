@@ -21,8 +21,8 @@ const contactInfo = [
   {
     icon: Mail,
     title: "Email",
-    value: "hello@outrightsluringinvite.com",
-    link: "mailto:hello@outrightsluringinvite.com",
+    value: "outrightluringinvite@gmail.com",
+    link: "mailto:outrightluringinvite@gmail.com",
   },
   {
     icon: MapPin,

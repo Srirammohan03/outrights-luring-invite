@@ -4,6 +4,37 @@
   padding: 2rem;
   text-align: center;
 }
+/* Disable selecting text */
+body {
+  user-select: none;
+}
+
+/* Disable image download drag */
+img {
+  pointer-events: none;
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+/* Disable highlighting */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+/* Prevent hyperlink text selection */
+a {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Prevent link drag (download or copy) */
+a {
+  -webkit-user-drag: none;
+}
+
+/* Optional — prevent blue highlight on links */
+a::selection {
+  background: transparent;
+}
 
 .logo {
   height: 6em;

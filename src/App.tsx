@@ -18,6 +18,7 @@ import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
 import InviteLoader from "@/components/loader/InviteLoader";
 import { LoaderProvider } from "@/lib/loader-context";
+import SiteProtection from "./components/SiteProtection";
 
 const queryClient = new QueryClient();
 
@@ -29,6 +30,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
+        <SiteProtection />
           <ScrollToTop />
           <Routes>
             <Route path="/" element={<Index />} />

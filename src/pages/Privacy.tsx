@@ -15,7 +15,7 @@ export default function Privacy() {
             <h2 className="text-xl font-semibold text-foreground mt-6">How We Use Your Information</h2>
             <p>We use your information to process enquiries, deliver services, and communicate with you about your orders.</p>
             <h2 className="text-xl font-semibold text-foreground mt-6">Contact Us</h2>
-            <p>For questions about this policy, contact us at hello@outrightsluringinvite.com</p>
+            <p>For questions about this policy, contact us at outrightluringinvite@gmail.com</p>
           </div>
         </div>
       </main>
